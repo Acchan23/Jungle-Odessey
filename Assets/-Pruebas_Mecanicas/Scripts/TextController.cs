@@ -11,19 +11,32 @@ public class TextController : MonoBehaviour
     private int index;
     private readonly float minDistance = 1.5f;
 
-    private void OnMouseDown()
+    private void Update()
     {
-        float distance = Vector2.Distance(this.gameObject.transform.position, player.transform.position);
-        if(distance <= minDistance)
+        if (Input.GetButtonDown("Fire2"))
         {
-            uIManager.SwitchTextBox(true);
-            ActivateText();
+            float distance = Vector2.Distance(this.gameObject.transform.position, player.transform.position);
+            if (distance <= minDistance)
+            {
+                uIManager.SwitchTextBox(true);
+                ActivateText();
+            }
         }
     }
 
+    //private void OnMouseDown()
+    //{
+    //    float distance = Vector2.Distance(this.gameObject.transform.position, player.transform.position);
+    //    if (distance <= minDistance)
+    //    {
+    //        uIManager.SwitchTextBox(true);
+    //        ActivateText();
+    //    }
+    //}
+
     private void ActivateText()
     {
-        if(index < texts.Length)
+        if (index < texts.Length)
         {
             uIManager.ShowTexts(texts[index]);
             index++;
