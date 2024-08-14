@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    
     public delegate void SumCoins(int coin);
     public static event SumCoins CoinCollected;
 
