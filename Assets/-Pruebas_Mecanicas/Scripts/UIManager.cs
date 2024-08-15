@@ -11,8 +11,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text coinsText;
     [SerializeField] private List<GameObject> hearts;
     [SerializeField] private Sprite disabledHeart;
-    [SerializeField] private GameObject textBox;
-    public GameObject TextBox { get { return textBox; } }
+    [SerializeField] private GameObject textPanel;
+    public GameObject TextPanel { get { return textPanel; } }
     [SerializeField] private TMP_Text textDialogue;
 
 
