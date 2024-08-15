@@ -7,13 +7,13 @@ public class PlayerController : MonoBehaviour
     enum PlayerStates { IDLE, MOVING, HIT, INVESTIGATING, DEAD };
 
     [Header("Stats")]
-    [Range(0,100)]
+    [Range(0, 100)]
     [SerializeField] private int life;
     [Range(0, 100)]
     [SerializeField] private int hunger;
     [Range(0, 100)]
     [SerializeField] private int thirst;
-    private readonly int lifeIncrease = 10; 
+    private readonly int lifeIncrease = 10;
 
     [Header("Movement")]
     [SerializeField] Rigidbody2D playerRb;
@@ -118,14 +118,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Eat(int food)
+    public void Eat(int food, int water)
     {
-        life += lifeIncrease;
-        hunger += food;
-    }
-
-    public void Drink(int water)
-    {
+        if (food >= 15)
+        {
+            life += lifeIncrease;
+            hunger += food;
+        }
         thirst += water;
     }
+
 }

@@ -21,7 +21,7 @@ public class TextController : MonoBehaviour
             distance = Vector2.Distance(this.gameObject.transform.position, player.transform.position);
             if (distance <= minDistance)
             {
-                uIManager.TextBox.SetActive(true);
+                uIManager.TextPanel.SetActive(true);
                 player.Investigate(true);
                 ActivateText();
             }
@@ -43,7 +43,7 @@ public class TextController : MonoBehaviour
     private void DeactivateTextBox()
     {
         player.Investigate(false);
-        uIManager.TextBox.SetActive(false);
+        uIManager.TextPanel.SetActive(false);
         index = 0;
     }
 }
