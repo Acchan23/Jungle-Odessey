@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7409559684210579255}
   - component: {fileID: 4424639353214379231}
   m_Layer: 0
-  m_Name: Carambola
+  m_Name: Carambolo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,6 +116,16 @@ PrefabInstance:
     - target: {fileID: 2263362817678078745, guid: 8b74a2131b0e3444c9448591aede2ef3, type: 3}
       propertyPath: uIManager
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263362817678078745, guid: 8b74a2131b0e3444c9448591aede2ef3, type: 3}
+      propertyPath: texts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263362817678078745, guid: 8b74a2131b0e3444c9448591aede2ef3, type: 3}
+      propertyPath: texts.Array.data[0]
+      value: 'Carambola.
+
+        Fruta alimenticia y jugosa.'
       objectReference: {fileID: 0}
     - target: {fileID: 3593385277172319269, guid: 8b74a2131b0e3444c9448591aede2ef3, type: 3}
       propertyPath: m_RootOrder

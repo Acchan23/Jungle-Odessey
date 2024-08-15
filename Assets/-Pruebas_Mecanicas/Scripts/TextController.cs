@@ -40,7 +40,7 @@ public class TextController : MonoBehaviour
         }
     }
 
-    private void DeactivateTextBox()
+    public void DeactivateTextBox()
     {
         player.Investigate(false);
         uIManager.TextPanel.SetActive(false);
