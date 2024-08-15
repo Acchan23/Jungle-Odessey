@@ -7,33 +7,26 @@ public class TextController : MonoBehaviour
     [SerializeField, TextArea(2, 5)] private string[] texts;
     [SerializeField] private UIManager uIManager;
     [SerializeField] private PlayerController player;
+    
 
     private int index;
-    private readonly float minDistance = 1.5f;
+    private float distance;
+    private readonly float minDistance = 1.2f;
 
+    
     private void Update()
     {
         if (Input.GetButtonDown("Fire2"))
         {
-            float distance = Vector2.Distance(this.gameObject.transform.position, player.transform.position);
+            distance = Vector2.Distance(this.gameObject.transform.position, player.transform.position);
             if (distance <= minDistance)
             {
-                uIManager.SwitchTextBox(true);
+                uIManager.TextBox.SetActive(true);
+                player.Investigate(true);
                 ActivateText();
             }
         }
     }
-
-    //private void OnMouseDown()
-    //{
-    //    float distance = Vector2.Distance(this.gameObject.transform.position, player.transform.position);
-    //    if (distance <= minDistance)
-    //    {
-    //        uIManager.SwitchTextBox(true);
-    //        ActivateText();
-    //    }
-    //}
-
     private void ActivateText()
     {
         if (index < texts.Length)
@@ -43,9 +36,14 @@ public class TextController : MonoBehaviour
         }
         else
         {
-            uIManager.SwitchTextBox(false);
-            index = 0;
+            DeactivateTextBox();
         }
     }
 
+    private void DeactivateTextBox()
+    {
+        player.Investigate(false);
+        uIManager.TextBox.SetActive(false);
+        index = 0;
+    }
 }

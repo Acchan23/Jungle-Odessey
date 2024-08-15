@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRb: {fileID: 341888398432616895}
-  speed: 3
+  speed: 4
   attackCollider: {fileID: 341888397308527001}
 --- !u!70 &341888398432616892
 CapsuleCollider2D:

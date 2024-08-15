@@ -4,45 +4,57 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    enum PlayerStates { IDLE, MOVING, HIT, INVESTIGATING, DEAD };
+
+    [Header("Stats")]
+    [Range(0,100)]
+    [SerializeField] private int life;
+    [Range(0, 100)]
+    [SerializeField] private int hunger;
+    [Range(0, 100)]
+    [SerializeField] private int thirst;
+    private readonly int lifeIncrease = 10; 
+
     [Header("Movement")]
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] float speed;
     private Animator playerAnim;
     private SpriteRenderer playerSprite;
-    private bool isDead;
-
+    private PlayerStates playerState = PlayerStates.IDLE;
 
     [Header("Combat")]
-    [SerializeField] BoxCollider2D attackCollider;
-    [SerializeField] UIManager uIManager;
+    [SerializeField] private BoxCollider2D attackCollider;
+    private UIManager uIManager;
     private readonly float offsetColliderX = 0.8f;
     private readonly float offsetColliderY = -0.1f;
-    private int life = 3;
+    //private int life = 3;
 
 
     private void Awake()
     {
+        uIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         playerAnim = GetComponentInChildren<Animator>();
         playerSprite = GetComponentInChildren<SpriteRenderer>();
         attackCollider.enabled = false;
     }
     private void FixedUpdate()
     {
-        if (!isDead) Movement();
+        if (playerState is PlayerStates.IDLE || playerState is PlayerStates.MOVING) Movement();
     }
 
     private void Update()
     {
-        if (!isDead)
+        if (playerState is PlayerStates.IDLE || playerState is PlayerStates.MOVING)
         {
             if (Input.GetButtonDown("Fire1")) Attack();
 
-            //if (Input.GetButtonDown("Fire3")) ReceiveDamage();
+            if (Input.GetButtonDown("Fire3")) ReceiveDamage();
         }
     }
 
     private void Movement()
     {
+        playerState = PlayerStates.MOVING;
         float hInput = Input.GetAxis("Horizontal");
         float vInput = Input.GetAxis("Vertical");
 
@@ -53,6 +65,10 @@ public class PlayerController : MonoBehaviour
         {
             playerSprite.flipX = hInput < 0;
             attackCollider.offset = !playerSprite.flipX ? new Vector2(offsetColliderX, offsetColliderY) : new Vector2(-offsetColliderX, offsetColliderY);
+        }
+        else
+        {
+            playerState = PlayerStates.IDLE;
         }
     }
 
@@ -70,7 +86,7 @@ public class PlayerController : MonoBehaviour
             uIManager.DisableHeart(life);
         }
 
-        StartDeathSequence();
+        if (playerState != PlayerStates.DEAD) StartDeathSequence();
     }
 
     private void StartDeathSequence()
@@ -78,13 +94,38 @@ public class PlayerController : MonoBehaviour
         if (life != 0) return;
 
         playerRb.velocity *= 0;
-        isDead = true;
+        playerState = PlayerStates.DEAD;
         playerAnim.SetTrigger("Death");
-        Invoke(nameof(Die), 1f);
+        //Invoke(nameof(Die), 1f);
     }
 
-    private void Die()
+    //private void Die()
+    //{
+    //    Destroy(this.gameObject);
+    //}
+
+    public void Investigate(bool isDialogueActive)
     {
-        Destroy(this.gameObject);
+        if (isDialogueActive)
+        {
+            playerRb.velocity *= 0;
+            playerAnim.SetFloat("Walking", 0);
+            playerState = PlayerStates.INVESTIGATING;
+        }
+        else
+        {
+            playerState = PlayerStates.IDLE;
+        }
+    }
+
+    public void Eat(int food)
+    {
+        life += lifeIncrease;
+        hunger += food;
+    }
+
+    public void Drink(int water)
+    {
+        thirst += water;
     }
 }
