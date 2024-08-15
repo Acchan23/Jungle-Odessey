@@ -14,9 +14,9 @@ public class PlayerStats : MonoBehaviour
     public Slider hungry;
 
     [Range(0, 100)] public int thirstCur;
-    [Range(0, 10)] public int lifeCur;
-    [Range(0, 10)] public int armorCur;
-    [Range(0, 10)] public int hungryCur;
+    [Range(0, 100)] public int lifeCur;
+    [Range(0, 100)] public int armorCur;
+    [Range(0, 100)] public int hungryCur;
 
     public float timeRecoveryLife = 3;
     private float timeRecoveryLifeCur = 0;
