@@ -6325,7 +6325,7 @@ MonoBehaviour:
   m_VoxelSize: 0.1
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: e3e36659201311649be8a71e1a1e944a, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!4 &1323807121
 Transform:
   m_ObjectHideFlags: 0
@@ -8751,6 +8751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  stats: {fileID: 0}
   animator: {fileID: 1663324814}
 --- !u!50 &1663324818
 Rigidbody2D:
@@ -8802,7 +8803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5308c33e14799da40a746cf9135af63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeEffect: {fileID: 0}
   thirst: {fileID: 392736844}
   life: {fileID: 463182115}
   armor: {fileID: 437904284}
