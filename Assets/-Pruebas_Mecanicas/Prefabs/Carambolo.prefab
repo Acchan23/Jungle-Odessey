@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5817227928057594646}
   - component: {fileID: 7409559684210579255}
-  - component: {fileID: 4424639353214379231}
+  - component: {fileID: 1631626971}
+  - component: {fileID: 1631626972}
   m_Layer: 0
   m_Name: Carambolo
   m_TagString: Untagged
@@ -72,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -714147021
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e01e79c76bbd344429fb1850ddb4ed14, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -86,7 +87,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4424639353214379231
+--- !u!61 &1631626971
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098895477382292609}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.013950378, y: 0.11934233}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.52, y: 1.68}
+    newSize: {x: 0.07, y: 0.09}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2502978, y: 1.3111238}
+  m_EdgeRadius: 0
+--- !u!114 &1631626972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,9 +122,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1098895477382292609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6398a6e31738564eb03598585f3cbad, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cba647ba58eeb24e847839f438cf532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 2
+  nameItem: carambolo
 --- !u!1001 &430216728527168404
 PrefabInstance:
   m_ObjectHideFlags: 0
