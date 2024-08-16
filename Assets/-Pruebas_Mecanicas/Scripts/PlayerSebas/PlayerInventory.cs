@@ -13,7 +13,7 @@ public class PlayerInventory : MonoBehaviour
     public Item[] items;
     public void EmptySlot(int numSlot, Image img)
     {
-        items[numSlot].isFull = false;
+        items[numSlot].isOccupied = false;
         items[numSlot].amount = 1;
         items[numSlot].type = ItemType.NONE;
         img.sprite = null;
@@ -33,7 +33,7 @@ public enum ItemType
 [System.Serializable]
 public class Item
 {
-    public bool isFull;
+    public bool isOccupied;
     public int amount;
     public ItemType type;
     public string name;

@@ -10,36 +10,42 @@ public class PickUp : MonoBehaviour
     private Sprite sprite;
     public ItemType type;
     public string nameItem;
+    private readonly int maxItems = 5;
     // Start is called before the first frame update
     void Start()
     {
         inventory = PlayerInventory.Instance;
-        sprite = GetComponent<SpriteRenderer>().sprite;    
+        sprite = GetComponent<SpriteRenderer>().sprite;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
+            foreach (Item item in inventory.items)
+            {
+                if (item.name == nameItem && item.amount == maxItems) return;
+            }
+           
             for (int i = 0; i < inventory.items.Length; i++)
             {
-                if(inventory.items[i].isFull == false)
+                if (!inventory.items[i].isOccupied)
                 {
                     Debug.Log("New Item");
-                    inventory.items[i].isFull = true;
+                    inventory.items[i].isOccupied = true;
                     inventory.items[i].amount = 1;
                     inventory.items[i].type = type;
                     inventory.items[i].name = nameItem;
                     inventory.items[i].slotSprite.GetComponent<Image>().sprite = sprite;
                     inventory.items[i].slotSprite.GetComponent<Image>().enabled = true;
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
                     break;
                 }
-               if (inventory.items[i].isFull == true && inventory.items[i].name == nameItem && inventory.items[i].amount < 64)
+                if (inventory.items[i].isOccupied == true && inventory.items[i].name == nameItem && inventory.items[i].amount < maxItems)
                 {
                     Debug.Log("add other Item ");
-                    inventory.items[i].amount +=1;
-                    Destroy(gameObject);
+                    inventory.items[i].amount += 1;
+                    gameObject.SetActive(false);
                     break;
                 }
             }

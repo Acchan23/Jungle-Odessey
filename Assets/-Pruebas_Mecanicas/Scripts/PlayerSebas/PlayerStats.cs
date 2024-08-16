@@ -33,22 +33,14 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        thirst.value = thirstCur;
-        life.value = lifeCur;
-        armor.value = armorCur;
-        hungry.value = hungryCur;
-
+        UpdateStats();
         timeLostHungryCur = timeLostHungry;
     }
 
     // Update is called once per frame
     void Update()
     {
-        thirst.value = thirstCur;
-        life.value = lifeCur;
-        armor.value = armorCur;
-        hungry.value = hungryCur;
-
+        UpdateStats();
         if (hungry.value == 10 && life.value < 10 && timeRecoveryLifeCur <= 0)
         {
             Debug.Log("sanado++");
@@ -73,6 +65,14 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    private void UpdateStats()
+    {
+        thirst.value = thirstCur;
+        life.value = lifeCur;
+        armor.value = armorCur;
+        hungry.value = hungryCur;
+    } 
+
     public void AddLife(int amount)
     {
         //Instantiate(lifeEffect, transform.position, Quaternion.identity);
@@ -84,4 +84,6 @@ public class PlayerStats : MonoBehaviour
         //Instantiate(lifeEf transform.position, Quaternion.identity);
         hungryCur += amount; 
     }
+
+    
 }

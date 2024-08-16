@@ -13,6 +13,7 @@ public class EnemyNavigation : MonoBehaviour
     }
     private void Start()
     {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }

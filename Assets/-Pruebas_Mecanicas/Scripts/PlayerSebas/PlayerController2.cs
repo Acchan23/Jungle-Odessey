@@ -6,25 +6,40 @@ using UnityEngine.UI;
 
 public class PlayerController2 : MonoBehaviour
 {
-    enum PlayerStates { IDLE, MOVING, HIT, INVESTIGATING, DEAD };
-    public float speed = 7f;
-    private PlayerStates playerState = PlayerStates.IDLE;
+    enum States { IDLE, MOVING, HIT, INVESTIGATING, DEAD };
+    [SerializeField] private float speed = 7f;
+    [SerializeField] private PlayerStats stats;
+    private States playerState = States.IDLE;
     public Animator animator;
-    public GameObject inventoryPanel;
-    private bool isInventoryOpen = false;
+    //public GameObject inventoryPanel;
+    //private bool isInventoryOpen = false;
 
     void Start()
     {
-        inventoryPanel.SetActive(false);
+        stats = GetComponent<PlayerStats>();
+        //inventoryPanel.SetActive(false);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (stats.lifeCur >= 7)
         {
-            OpenInventory();
+            speed = 7f;
         }
-        if (playerState is PlayerStates.IDLE || playerState is PlayerStates.MOVING)
+        else if (stats.lifeCur <= 3)
+        {
+            speed = 2.5f;
+        }
+        else
+        {
+            speed = 5f;
+        }
+       
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    OpenInventory();
+        //}
+        if (playerState is States.IDLE || playerState is States.MOVING)
         {
             Movement();
             if (Input.GetButtonDown("Fire1")) Attack();
@@ -33,25 +48,26 @@ public class PlayerController2 : MonoBehaviour
         }
     }
 
-    private void OpenInventory()
-    {
-        isInventoryOpen = !isInventoryOpen;
-        inventoryPanel.SetActive(isInventoryOpen);
+    //private void OpenInventory()
+    //{
+    //    isInventoryOpen = !isInventoryOpen;
+    //    inventoryPanel.SetActive(isInventoryOpen);
 
-        /*if (isInventoryOpen)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }*/
-    }
+    //    /*if (isInventoryOpen)
+    //    {
+    //        Time.timeScale = 0f;
+    //    }
+    //    else
+    //    {
+    //        Time.timeScale = 1f;
+    //    }*/
+    //}
 
     public void Movement()
     {
+        playerState = States.MOVING;
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        float speedy = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        float speedY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
         animator.SetFloat("movement", speedX * speed);
 
         if (speedX < 0)
@@ -64,7 +80,7 @@ public class PlayerController2 : MonoBehaviour
         }
 
         Vector3 position = transform.position;
-        transform.position = new Vector3(speedX + position.x, speedy + position.y, position.z);
+        transform.position = new Vector3(speedX + position.x, speedY + position.y, position.z);
     }
 
     private void Attack()

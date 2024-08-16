@@ -7,6 +7,6 @@ public class MenuManagerScript : MonoBehaviour
 {
     //Carga las escenas del jeugo
     public void EscenaJuego(){
-        SceneManager.LoadScene("SebasGym");
+        SceneManager.LoadScene("SebasGymNavMesh");
     }
 }
