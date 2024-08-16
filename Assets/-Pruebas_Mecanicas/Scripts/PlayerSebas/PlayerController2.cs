@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController2 : MonoBehaviour
 {
@@ -8,14 +10,20 @@ public class PlayerController2 : MonoBehaviour
     public float speed = 7f;
     private PlayerStates playerState = PlayerStates.IDLE;
     public Animator animator;
+    public GameObject inventoryPanel;
+    private bool isInventoryOpen = false;
 
     void Start()
     {
-
+        inventoryPanel.SetActive(false);
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            OpenInventory();
+        }
         if (playerState is PlayerStates.IDLE || playerState is PlayerStates.MOVING)
         {
             Movement();
@@ -23,6 +31,21 @@ public class PlayerController2 : MonoBehaviour
 
             //if (Input.GetButtonDown("Fire3")) ReceiveDamage();
         }
+    }
+
+    private void OpenInventory()
+    {
+        isInventoryOpen = !isInventoryOpen;
+        inventoryPanel.SetActive(isInventoryOpen);
+
+        /*if (isInventoryOpen)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }*/
     }
 
     public void Movement()
