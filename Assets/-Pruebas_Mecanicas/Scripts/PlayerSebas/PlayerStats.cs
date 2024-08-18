@@ -41,6 +41,7 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         UpdateStats();
+        
         if (hungry.value == 10 && life.value < 10 && timeRecoveryLifeCur <= 0)
         {
             Debug.Log("sanado++");
@@ -65,13 +66,18 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        if (lifeCur == 0) GameManager.Instance.GameOver();
+    }
+
     private void UpdateStats()
     {
         thirst.value = thirstCur;
         life.value = lifeCur;
         armor.value = armorCur;
-        hungry.value = hungryCur;
-    } 
+        hungry.value = hungryCur;        
+    }
 
     public void AddLife(int amount)
     {
@@ -82,8 +88,12 @@ public class PlayerStats : MonoBehaviour
     public void AddHungry(int amount)
     {
         //Instantiate(lifeEf transform.position, Quaternion.identity);
-        hungryCur += amount; 
+        hungryCur += amount;
     }
 
-    
+    public void LoseLife(int amount)
+    {
+        lifeCur -= amount;
+    }
+
 }
