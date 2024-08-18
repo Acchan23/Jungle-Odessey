@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private ObjectPooler objectPooler;
     private readonly int minSpawnTime = 3;
-    private readonly int maxSpawnTime = 5;
+    private readonly int maxSpawnTime = 7;
 
     private void Start()
     {
