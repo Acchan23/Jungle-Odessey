@@ -16,8 +16,8 @@ public class PlayerController2 : MonoBehaviour
     private States playerState = States.IDLE;
     public Animator animator;
     [SerializeField] private Rigidbody2D playerRb;
-    //public GameObject inventoryPanel;
-    //private bool isInventoryOpen = false;
+    public GameObject inventoryPanel;
+    private bool isInventoryOpen = false;
 
     void Start()
     {
@@ -40,10 +40,10 @@ public class PlayerController2 : MonoBehaviour
             speed = 5f;
         }
 
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    OpenInventory();
-        //}
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+           OpenInventory();
+        }
         if (playerState is States.IDLE || playerState is States.MOVING)
         {
             Movement();
@@ -53,20 +53,20 @@ public class PlayerController2 : MonoBehaviour
         }
     }
 
-    //private void OpenInventory()
-    //{
-    //    isInventoryOpen = !isInventoryOpen;
-    //    inventoryPanel.SetActive(isInventoryOpen);
+    private void OpenInventory()
+    {
+       isInventoryOpen = !isInventoryOpen;
+       inventoryPanel.SetActive(isInventoryOpen);
 
-    //    /*if (isInventoryOpen)
-    //    {
-    //        Time.timeScale = 0f;
-    //    }
-    //    else
-    //    {
-    //        Time.timeScale = 1f;
-    //    }*/
-    //}
+       if (isInventoryOpen)
+       {
+           Time.timeScale = 0f;
+       }
+       else
+       {
+           Time.timeScale = 1f;
+       }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -116,5 +116,19 @@ public class PlayerController2 : MonoBehaviour
     public void ChangePlayerState(States state)
     {
         playerState = state;
+    }
+
+     public void Investigate(bool isDialogueActive)
+    {
+        if (isDialogueActive)
+        {
+            playerRb.velocity *= 0;
+            animator.SetFloat("Walking", 0);
+            playerState = States.INVESTIGATING;
+        }
+        else
+        {
+            playerState = States.IDLE;
+        }
     }
 }

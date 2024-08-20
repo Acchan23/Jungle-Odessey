@@ -27,7 +27,9 @@ public enum ItemType
 {
     NONE,
     WEAPON,
-    FOOD
+    MEAT,
+    FRUIT,
+    MEDICINAL
 }
 
 [System.Serializable]
@@ -36,8 +38,8 @@ public class Item
     public bool isOccupied;
     public int amount;
     public ItemType type;
-    public string name;
     public GameObject slotSprite;
 }
+
 
 

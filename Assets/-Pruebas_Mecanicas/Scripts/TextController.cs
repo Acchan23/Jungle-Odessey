@@ -6,7 +6,7 @@ public class TextController : MonoBehaviour
 {
     [SerializeField, TextArea(2, 5)] private string[] texts;
     [SerializeField] private UIManager uIManager;
-    [SerializeField] private PlayerController player;
+    [SerializeField] private PlayerController2 player;
     
 
     private int index;
