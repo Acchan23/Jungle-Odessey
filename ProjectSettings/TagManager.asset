@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - UIManager
   - Button
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -52,4 +53,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3580820275
+    locked: 0
+  - name: Top
+    uniqueID: 1788606717
     locked: 0

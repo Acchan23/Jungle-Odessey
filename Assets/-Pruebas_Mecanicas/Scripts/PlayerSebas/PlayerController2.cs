@@ -4,21 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum States { IDLE, MOVING, HIT, INVESTIGATING, DEAD };
 
 public class PlayerController2 : MonoBehaviour
 {
+    enum PlayerStates { IDLE, MOVING, ATTACKING, HIT, CHECKING, DEAD };
     
-
     private float speed = 7f;
-    private float pushbackForce = 10f;
-    [SerializeField] private PlayerStats stats;
-    private States playerState = States.IDLE;
-    public Animator animator;
+    private PlayerStats stats;
+    [SerializeField] private PlayerAttack attackCollider;
     [SerializeField] private Rigidbody2D playerRb;
+    private PlayerStates playerState = PlayerStates.IDLE;
+    public Animator animator;
+    private SpriteRenderer playerSprite;
     //public GameObject inventoryPanel;
     //private bool isInventoryOpen = false;
 
+    private void Awake()
+    {
+        playerSprite = GetComponent<SpriteRenderer>();
+    }
     void Start()
     {
         stats = GetComponent<PlayerStats>();
@@ -27,29 +31,16 @@ public class PlayerController2 : MonoBehaviour
 
     void Update()
     {
-        if (stats.lifeCur >= 7)
-        {
-            speed = 7f;
-        }
-        else if (stats.lifeCur <= 3)
-        {
-            speed = 3.5f;
-        }
-        else
-        {
-            speed = 5f;
-        }
-
         //if (Input.GetKeyDown(KeyCode.P))
         //{
         //    OpenInventory();
         //}
-        if (playerState is States.IDLE || playerState is States.MOVING)
-        {
-            Movement();
-            if (Input.GetButtonDown("Fire1")) Attack();
+        AdjustSpeedToHealth();
 
-            //if (Input.GetButtonDown("Fire3")) ReceiveDamage();
+        if (playerState is PlayerStates.IDLE || playerState is PlayerStates.MOVING)
+        {
+            Move();
+            if (Input.GetButtonDown("Fire1")) Attack();
         }
     }
 
@@ -70,51 +61,79 @@ public class PlayerController2 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !(playerState is States.HIT))
+        if (collision.gameObject.CompareTag("Enemy") && !(playerState is PlayerStates.HIT))
         {
-            ChangePlayerState(States.HIT);
-            Debug.Log("character hit");
-            stats.LoseLife(1);
-            Vector2 distance = transform.position - collision.gameObject.transform.position;
-            playerRb.velocity = distance * pushbackForce;
+            TakeHit(collision);
+            StartCoroutine(Recover());
         }
 
-        Invoke(nameof(RegainControl), 0.5f);
-
     }
 
-    private void RegainControl()
+    private void TakeHit(Collision2D collision)
     {
-        playerRb.velocity *= 0;
-        ChangePlayerState(States.MOVING);
+        playerState = PlayerStates.HIT;
+
+        float pushbackForce = 8f;
+        stats.LoseLife(1);
+        Vector2 distance = transform.position - collision.gameObject.transform.position;
+        playerRb.velocity = distance * pushbackForce;
+        Debug.Log("character hit");
     }
-    private void Movement()
+
+    private void Attack()
     {
-        ChangePlayerState(States.MOVING);
+        playerState = PlayerStates.ATTACKING;
+        attackCollider.SetAttackDirection();
+        animator.SetTrigger("attack");
+        playerState = PlayerStates.MOVING;
+    }
+
+    private void Move()
+    {
+        playerState = PlayerStates.MOVING;
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float speedY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
         animator.SetFloat("movement", speedX * speed);
 
         if (speedX < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            playerSprite.flipX = true;
+            //transform.localScale = new Vector3(-1, 1, 1);
         }
+
         if (speedX > 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            playerSprite.flipX = false;
+            //transform.localScale = new Vector3(1, 1, 1);
         }
+
 
         Vector3 position = transform.position;
         transform.position = new Vector3(speedX + position.x, speedY + position.y, position.z);
     }
 
-    private void Attack()
+    IEnumerator Recover()
     {
-        animator.SetTrigger("attack");
+        yield return new WaitForSeconds(0.5f);
+        playerRb.velocity *= 0;
+        playerState = PlayerStates.MOVING;
     }
 
-    public void ChangePlayerState(States state)
+    private void AdjustSpeedToHealth()
     {
-        playerState = state;
+        if (stats.lifeCur >= 7)
+        {
+            speed = 7f;
+        }
+        else if (stats.lifeCur <= 3)
+        {
+            speed = 3.5f;
+        }
+        else
+        {
+            speed = 5f;
+        }
     }
+
+    
 }
