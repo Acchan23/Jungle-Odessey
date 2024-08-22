@@ -83,7 +83,7 @@ public class PlayerController2 : MonoBehaviour
     private void Attack()
     {
         playerState = PlayerStates.ATTACKING;
-        attackCollider.SetAttackDirection();
+        //attackCollider.SetAttackDirection();
         animator.SetTrigger("attack");
         playerState = PlayerStates.MOVING;
     }
@@ -97,14 +97,14 @@ public class PlayerController2 : MonoBehaviour
 
         if (speedX < 0)
         {
-            playerSprite.flipX = true;
-            //transform.localScale = new Vector3(-1, 1, 1);
+            //playerSprite.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
 
         if (speedX > 0)
         {
-            playerSprite.flipX = false;
-            //transform.localScale = new Vector3(1, 1, 1);
+            //playerSprite.flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
         }
 
 
