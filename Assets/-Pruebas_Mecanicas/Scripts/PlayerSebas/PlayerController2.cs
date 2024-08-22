@@ -16,8 +16,8 @@ public class PlayerController2 : MonoBehaviour
     private PlayerStates playerState = PlayerStates.IDLE;
     public Animator animator;
     private SpriteRenderer playerSprite;
-    //public GameObject inventoryPanel;
-    //private bool isInventoryOpen = false;
+    public GameObject inventoryPanel;
+    private bool isInventoryOpen = false;
 
     private void Awake()
     {
@@ -31,10 +31,10 @@ public class PlayerController2 : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    OpenInventory();
-        //}
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            OpenInventory();
+        }
         AdjustSpeedToHealth();
 
         if (playerState is PlayerStates.IDLE || playerState is PlayerStates.MOVING)
@@ -44,20 +44,20 @@ public class PlayerController2 : MonoBehaviour
         }
     }
 
-    //private void OpenInventory()
-    //{
-    //    isInventoryOpen = !isInventoryOpen;
-    //    inventoryPanel.SetActive(isInventoryOpen);
+    private void OpenInventory()
+    {
+        isInventoryOpen = !isInventoryOpen;
+        inventoryPanel.SetActive(isInventoryOpen);
 
-    //    /*if (isInventoryOpen)
-    //    {
-    //        Time.timeScale = 0f;
-    //    }
-    //    else
-    //    {
-    //        Time.timeScale = 1f;
-    //    }*/
-    //}
+        if (isInventoryOpen)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
