@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -13,11 +14,16 @@ public class MapManager : MonoBehaviour
     public int posI, posJ;  
     //Variable para corregir la posición al atravesar una puerta
     public float correction = 0.5f; 
+    [SerializeField] private Collider2D characterCollider; 
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake() 
     {
-        ConstruirMapa(); 
-        
+        characterCollider = GetComponent<Collider2D>();  
+    }
+    void Start()
+    { 
+        ConstruirMapa();  
     }
 
     // Update is called once per frame
@@ -29,7 +35,12 @@ public class MapManager : MonoBehaviour
     //Contacto con cada una de las entradas del mapa
     private void OnTriggerEnter2D(Collider2D other)
     {   
-        CambioMapa(other);
+        if(other.gameObject.CompareTag("Right") || other.gameObject.CompareTag("Left") || other.gameObject.CompareTag("Down") || other.gameObject.CompareTag("Up") )
+        {
+        characterCollider.enabled = false;
+        //CambioMapa(other);
+        StartCoroutine(TransicionFade(other));
+        }
     }
 
     /*private void OnTriggerExit2D(Collider2D other) 
@@ -68,14 +79,11 @@ public class MapManager : MonoBehaviour
 
         if(other.gameObject.CompareTag("Right"))
         {   
-            StartCoroutine(TransicionFade());
             piecesOfMap[posI,posJ].SetActive(false);
             posJ ++;
             //Debug.Log("las posición en J es " + posJ);
             transform.position = new Vector2(-transform.position.x + correction,transform.position.y);
-            piecesOfMap[posI,posJ].SetActive(true);
-             
-            
+            piecesOfMap[posI,posJ].SetActive(true); 
         }
         else if(other.gameObject.CompareTag("Left"))
         {
@@ -103,13 +111,17 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    public IEnumerator TransicionFade()
-    {
+    public IEnumerator TransicionFade(Collider2D other)
+    {       
+            animationFade.PlayInFixedTime("FadeIn");
             Time.timeScale = 0;
-            animationFade.Play("FadeIn"); 
+            //animationFade.Play("FadeIn"); 
+            yield return new WaitForSecondsRealtime(0.3f);
             animationFade.Play("FadeOut");
-            Time.timeScale = 1; 
-            yield return new WaitForSeconds(5.0f);
+            Time.timeScale = 1;
+            CambioMapa(other);
+            characterCollider.enabled = true; 
+            
     }
 
 }
