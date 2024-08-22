@@ -7,6 +7,10 @@ TagManager:
   - Enemy
   - UIManager
   - Button
+  - Right
+  - Down
+  - Up
+  - Left
   layers:
   - Default
   - TransparentFX
