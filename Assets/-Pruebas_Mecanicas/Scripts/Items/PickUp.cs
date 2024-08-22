@@ -7,11 +7,12 @@ public class PickUp : MonoBehaviour
 {
     PlayerInventory inventory;
     private Sprite sprite;
+
     public ItemType type;
     private readonly int maxItems = 5;
-    public GameObject interactionPrompt;
     private bool isPlayerNear = false;
-    public GameObject optionsMenu;
+    [SerializeField] private GameObject interactionPrompt;
+    [SerializeField] private GameObject optionsMenu;
 
     // Referencia estática a la instancia actual
     public static PickUp currentPickUp;
@@ -20,10 +21,14 @@ public class PickUp : MonoBehaviour
     {
         inventory = PlayerInventory.Instance;
         sprite = GetComponent<SpriteRenderer>().sprite;
-        interactionPrompt.SetActive(false);
-        optionsMenu.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        Transform uiManager = GameObject.FindWithTag("UIManager").transform;
+        interactionPrompt = uiManager.GetChild(0).gameObject;
+        optionsMenu = uiManager.GetChild(1).gameObject;
+    }
     void Update()
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.E))
@@ -58,7 +63,7 @@ public class PickUp : MonoBehaviour
         Time.timeScale = 0f; // Pausar el juego si es necesario
         interactionPrompt.SetActive(false);
         optionsMenu.SetActive(true);
-        
+
 
         // Actualizamos los botones del menú de opciones
         Button takeButton = optionsMenu.transform.Find("TakeButton").GetComponent<Button>();
