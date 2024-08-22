@@ -26,28 +26,15 @@ public class MapManager : MonoBehaviour
         ConstruirMapa();  
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     //Contacto con cada una de las entradas del mapa
     private void OnTriggerEnter2D(Collider2D other)
     {   
         if(other.gameObject.CompareTag("Right") || other.gameObject.CompareTag("Left") || other.gameObject.CompareTag("Down") || other.gameObject.CompareTag("Up") )
         {
         characterCollider.enabled = false;
-        //CambioMapa(other);
         StartCoroutine(TransicionFade(other));
         }
     }
-
-    /*private void OnTriggerExit2D(Collider2D other) 
-    {   
-        animationFade.StopPlayback(); 
-        animationFade.Play("FadeOut");  
-    }*/
 
 /***********************************/
 
