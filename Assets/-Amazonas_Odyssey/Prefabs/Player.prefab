@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4027306209847322445}
   - component: {fileID: 5039191999772174124}
   - component: {fileID: 7227896685404020918}
+  - component: {fileID: 410331259816359409}
   - component: {fileID: 3824897089226195562}
   - component: {fileID: 2320174743612559682}
   - component: {fileID: 7117619261046161569}
@@ -172,10 +173,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f62073f5c4fc64fb25bccf93d64b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
-  animator: {fileID: 5039191999772174124}
+  attackCollider: {fileID: 0}
   playerRb: {fileID: 4027306209847322445}
+  damagePopupPlayerPrefab: {fileID: 0}
+  animator: {fileID: 5039191999772174124}
   inventoryPanel: {fileID: 0}
+--- !u!114 &410331259816359409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896267964050440879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3088213a709e9347a7e53c94404a5f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationFade: {fileID: 0}
+  maps: []
+  posI: 0
+  posJ: 0
+  correction: 0.5
+  characterCollider: {fileID: 0}
 --- !u!114 &3824897089226195562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,4 +362,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 1446703614761185371}
-  objectPooler: {fileID: 0}
