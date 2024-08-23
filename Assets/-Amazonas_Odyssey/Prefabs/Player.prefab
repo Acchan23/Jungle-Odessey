@@ -172,9 +172,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f62073f5c4fc64fb25bccf93d64b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: {fileID: 1713356476465129723}
-  playerRb: {fileID: 4027306209847322445}
+  stats: {fileID: 0}
   animator: {fileID: 5039191999772174124}
+  playerRb: {fileID: 4027306209847322445}
+  inventoryPanel: {fileID: 0}
 --- !u!114 &3824897089226195562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,15 +207,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thirst: {fileID: 0}
   life: {fileID: 0}
-  armor: {fileID: 0}
   hungry: {fileID: 0}
-  thirstCur: 5
-  lifeCur: 5
-  armorCur: 5
-  hungryCur: 5
-  timeRecoveryLife: 3
-  timeLostHungry: 5
-  timeLostHungryCur: 0
+  thirstCur: 3
+  lifeCur: 2
+  hungryCur: 3
 --- !u!114 &7117619261046161569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,52 +223,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458d455f0507c8448a949f9dacdf26db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lanceSprite: {fileID: 21300000, guid: 086fe4ffe0caa6d43a935cb93f8acbc9, type: 3}
   items:
   - isOccupied: 0
     amount: 0
-    type: 0
-    name: 
+    type: 1
     slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 2
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 3
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 4
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 5
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 6
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
   - isOccupied: 0
     amount: 0
     type: 0
-    name: 
     slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
   - isOccupied: 0
     amount: 0
     type: 0
-    name: 
     slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
   - isOccupied: 0
     amount: 0
     type: 0
-    name: 
     slotSprite: {fileID: 0}
-  - isOccupied: 0
-    amount: 0
-    type: 0
-    name: 
-    slotSprite: {fileID: 0}
-  - isOccupied: 0
-    amount: 0
-    type: 0
-    name: 
-    slotSprite: {fileID: 0}
-  - isOccupied: 0
-    amount: 0
-    type: 0
-    name: 
-    slotSprite: {fileID: 0}
-  - isOccupied: 0
-    amount: 0
-    type: 0
-    name: 
-    slotSprite: {fileID: 0}
-  - isOccupied: 0
-    amount: 0
-    type: 0
-    name: 
-    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
 --- !u!1 &7093740463155661904
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +283,7 @@ GameObject:
   - component: {fileID: 1713356476465129723}
   m_Layer: 0
   m_Name: AttackCollider
-  m_TagString: Weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -319,7 +316,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.56, y: 0}
+  m_Offset: {x: 0.5, y: -0.05}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -330,7 +327,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.5, y: 0.4}
   m_EdgeRadius: 0
 --- !u!114 &1713356476465129723
 MonoBehaviour:
@@ -345,4 +342,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 1446703614761185371}
-  mainCamera: {fileID: 0}
+  objectPooler: {fileID: 0}
