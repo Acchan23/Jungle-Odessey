@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     [SerializeField] private ObjectPooler objectPooler;
     [SerializeField] private GameObject victoryPanel;
-    private readonly float victorytimer = 60f;
+    //private readonly float victorytimer = 60f;
 
     private void Awake()
     {
@@ -26,19 +26,20 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         victoryPanel.SetActive(false);
-        StartCoroutine(SpawnBonfire());
+        //StartCoroutine(SpawnBonfire());
     }
 
-    private IEnumerator SpawnBonfire()
+   /* private IEnumerator SpawnBonfire()
     {
         yield return new WaitForSeconds(victorytimer);
         objectPooler.SpawnFromPool("Fire", transform.position, transform.rotation);
-    }
+    }*/
 
     public void GameOver() => SceneManager.LoadScene(0);
 
     public void Victory()
     {
+        objectPooler.SpawnFromPool("Fire", transform.position, transform.rotation);
         Time.timeScale = 0;
         victoryPanel.SetActive(true);
     }

@@ -18,20 +18,32 @@ public class Slots : MonoBehaviour
         
     public void UseItem()
     {
-        Debug.Log("Here" + inventory.items[numSlot].name);
-        if (stats.lifeCur < 10 && inventory.items[numSlot].type == ItemType.FOOD && inventory.items[numSlot].amount == 1)
+        if (inventory.items[numSlot].amount <= 0) return;
+
+        ItemType itemType = inventory.items[numSlot].type;
+
+        switch (itemType)
         {
-            stats.AddHungry(3);
+            case ItemType.MEAT:
+                stats.AddHungry(3);
+                stats.AddThirst(1);
+                break;
+            case ItemType.CARAMBOLO:
+                stats.AddHungry(1);
+                stats.AddThirst(3);
+                break;
+            case ItemType.MEDICINAL:
+                stats.AddLife(1);
+                break;
+            default:
+                Debug.Log("Unrecognized item");
+                return;
+        }
+
+        inventory.items[numSlot].amount -= 1;
+        if (inventory.items[numSlot].amount == 0)
+        {
             inventory.EmptySlot(numSlot, GetComponent<Image>());
-        }
-        if (stats.lifeCur < 10 && inventory.items[numSlot].type == ItemType.FOOD && inventory.items[numSlot].amount > 1)
-        {
-            stats.AddHungry(3);
-            inventory.items[numSlot].amount -= 1;
-        }
-        else
-        {
-            Debug.Log("Not Function");
         }
     }
 }

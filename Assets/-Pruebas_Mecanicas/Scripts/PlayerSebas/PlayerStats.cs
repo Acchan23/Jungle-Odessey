@@ -7,44 +7,46 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
 
-    //public ParticleSystem lifeEffect;
     public Slider thirst;
     public Slider life;
-    public Slider armor;
     public Slider hungry;
 
     [Range(0, 10)] public int thirstCur;
     [Range(0, 10)] public int lifeCur;
-    [Range(0, 10)] public int armorCur;
     [Range(0, 10)] public int hungryCur;
 
-    public float timeRecoveryLife = 2;
+    private float timeRecoveryLife = 2;
     private float timeRecoveryLifeCur = 0;
 
-    [Header("")]
-    public float timeLostHungry = 5;
-    public float timeLostHungryCur = 0;
+    private float timeLostHungry = 5;
+    private float timeLostHungryCur = 0;
+
+    private float timeLostThirst = 5;
+    private float timeLostThirstCur = 0;
+
+    private float timeLostLife = 10;
+    private float timeLostLifeCur = 0;
 
     private void Awake()
     {
         instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         UpdateStats();
         timeLostHungryCur = timeLostHungry;
+        timeLostThirstCur = timeLostThirst;
+        timeLostLifeCur = timeLostLife;
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateStats();
-        
+
+        // Lógica para recuperar vida si el hambre está llena
         if (hungry.value == 10 && life.value < 10 && timeRecoveryLifeCur <= 0)
         {
-            Debug.Log("sanado++");
             timeRecoveryLifeCur = timeRecoveryLife;
         }
 
@@ -55,13 +57,45 @@ public class PlayerStats : MonoBehaviour
                 lifeCur += 1;
         }
 
+        // Lógica para disminuir el hambre
         if (timeLostHungryCur > 0)
         {
             timeLostHungryCur -= Time.deltaTime;
             if (timeLostHungryCur <= 0)
             {
-                hungryCur -= 1;
+                if (hungryCur > 0)
+                {
+                    hungryCur -= 1;
+                }
                 timeLostHungryCur = timeLostHungry;
+            }
+        }
+
+        // Lógica para disminuir la sed si el hambre es cero
+        if (hungryCur == 0 && timeLostThirstCur > 0)
+        {
+            timeLostThirstCur -= Time.deltaTime;
+            if (timeLostThirstCur <= 0)
+            {
+                if (thirstCur > 0)
+                {
+                    thirstCur -= 1;
+                }
+                timeLostThirstCur = timeLostThirst;
+            }
+        }
+
+        // Lógica para disminuir la vida si el hambre y la sed son cero
+        if (hungryCur == 0 && thirstCur == 0 && timeLostLifeCur > 0)
+        {
+            timeLostLifeCur -= Time.deltaTime;
+            if (timeLostLifeCur <= 0)
+            {
+                if (lifeCur > 0)
+                {
+                    lifeCur -= 1;
+                }
+                timeLostLifeCur = timeLostLife;
             }
         }
     }
@@ -75,25 +109,26 @@ public class PlayerStats : MonoBehaviour
     {
         thirst.value = thirstCur;
         life.value = lifeCur;
-        armor.value = armorCur;
-        hungry.value = hungryCur;        
+        hungry.value = hungryCur;
     }
 
     public void AddLife(int amount)
     {
-        //Instantiate(lifeEffect, transform.position, Quaternion.identity);
         lifeCur += amount;
     }
 
     public void AddHungry(int amount)
     {
-        //Instantiate(lifeEf transform.position, Quaternion.identity);
         hungryCur += amount;
+    }
+
+    public void AddThirst(int amount)
+    {
+        thirstCur += amount;
     }
 
     public void LoseLife(int amount)
     {
         lifeCur -= amount;
     }
-
 }

@@ -4,28 +4,60 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum States { IDLE, MOVING, HIT, INVESTIGATING, DEAD };
 
 public class PlayerController2 : MonoBehaviour
 {
-    
+    enum PlayerStates { IDLE, MOVING, ATTACKING, HIT, CHECKING, DEAD };
 
     private float speed = 7f;
-    private float pushbackForce = 10f;
-    [SerializeField] private PlayerStats stats;
-    private States playerState = States.IDLE;
-    public Animator animator;
+    private PlayerStats stats;
+    [SerializeField] private PlayerAttack attackCollider;
     [SerializeField] private Rigidbody2D playerRb;
-    //public GameObject inventoryPanel;
-    //private bool isInventoryOpen = false;
+    [SerializeField] private GameObject damagePopupPlayerPrefab;
+    private PlayerStates playerState = PlayerStates.IDLE;
+    public Animator animator;
+    //private SpriteRenderer playerSprite;
+    public GameObject inventoryPanel;
+    private bool isInventoryOpen = false;
 
-    void Start()
+    private void Awake()
     {
+        //playerSprite = GetComponent<SpriteRenderer>();
         stats = GetComponent<PlayerStats>();
-        //inventoryPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
+    }
+    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            OpenInventory();
+        }
+        AdjustSpeedToHealth();
+
+        if (playerState is PlayerStates.IDLE || playerState is PlayerStates.MOVING)
+        {
+            Move();
+            if (Input.GetButtonDown("Fire1")) Attack();
+        }
     }
 
-    void Update()
+    private void OpenInventory()
+    {
+        isInventoryOpen = !isInventoryOpen;
+        inventoryPanel.SetActive(isInventoryOpen);
+
+        if (isInventoryOpen)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
+
+    private void AdjustSpeedToHealth()
     {
         if (stats.lifeCur >= 7)
         {
@@ -39,82 +71,62 @@ public class PlayerController2 : MonoBehaviour
         {
             speed = 5f;
         }
-
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    OpenInventory();
-        //}
-        if (playerState is States.IDLE || playerState is States.MOVING)
-        {
-            Movement();
-            if (Input.GetButtonDown("Fire1")) Attack();
-
-            //if (Input.GetButtonDown("Fire3")) ReceiveDamage();
-        }
+    }
+    private void Attack()
+    {
+        playerState = PlayerStates.ATTACKING;
+        //attackCollider.SetAttackDirection();
+        animator.SetTrigger("attack");
+        playerState = PlayerStates.MOVING;
     }
 
-    //private void OpenInventory()
-    //{
-    //    isInventoryOpen = !isInventoryOpen;
-    //    inventoryPanel.SetActive(isInventoryOpen);
-
-    //    /*if (isInventoryOpen)
-    //    {
-    //        Time.timeScale = 0f;
-    //    }
-    //    else
-    //    {
-    //        Time.timeScale = 1f;
-    //    }*/
-    //}
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Move()
     {
-        if (collision.gameObject.CompareTag("Enemy") && !(playerState is States.HIT))
-        {
-            ChangePlayerState(States.HIT);
-            Debug.Log("character hit");
-            stats.LoseLife(1);
-            Vector2 distance = transform.position - collision.gameObject.transform.position;
-            playerRb.velocity = distance * pushbackForce;
-        }
-
-        Invoke(nameof(RegainControl), 0.5f);
-
-    }
-
-    private void RegainControl()
-    {
-        playerRb.velocity *= 0;
-        ChangePlayerState(States.MOVING);
-    }
-    private void Movement()
-    {
-        ChangePlayerState(States.MOVING);
+        playerState = PlayerStates.MOVING;
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float speedY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
         animator.SetFloat("movement", speedX * speed);
 
         if (speedX < 0)
         {
+            //playerSprite.flipX = true;
             transform.localScale = new Vector3(-1, 1, 1);
         }
+
         if (speedX > 0)
         {
+            //playerSprite.flipX = false;
             transform.localScale = new Vector3(1, 1, 1);
         }
+
 
         Vector3 position = transform.position;
         transform.position = new Vector3(speedX + position.x, speedY + position.y, position.z);
     }
-
-    private void Attack()
+    public void TakeHit(Vector2 distance, int damageTaken)
     {
-        animator.SetTrigger("attack");
+        float pushbackForce = 7f;
+        playerState = PlayerStates.HIT;
+        stats.LoseLife(damageTaken);
+        playerRb.velocity = distance * pushbackForce;
+        CreateDamagePopup(damageTaken * -1);
+        StartCoroutine(Recover());
     }
 
-    public void ChangePlayerState(States state)
+    IEnumerator Recover()
     {
-        playerState = state;
+        yield return new WaitForSeconds(0.5f);
+        playerRb.velocity *= 0;
+        playerState = PlayerStates.MOVING;
+    }   
+
+    private void CreateDamagePopup(int damage)
+    {
+        Vector3 offset = new(0, 0.5f);
+        GameObject damagePopupObj = Instantiate(damagePopupPlayerPrefab, transform.position + offset, Quaternion.identity);
+        DamagePopupPlayer damagePopup = damagePopupObj.GetComponent<DamagePopupPlayer>();
+        damagePopup.Setup(damage);
     }
+
+
 }

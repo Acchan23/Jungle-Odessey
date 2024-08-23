@@ -5,24 +5,33 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D attackCollider;
-    [SerializeField] private ObjectPooler objectPooler;
-
+    //[SerializeField] private Camera mainCamera;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
-            Transform lastPosition = collision.transform;
-            collision.gameObject.SetActive(false);
-            StartCoroutine(SpawnMeat(lastPosition));
-
+            Debug.Log("Enemy got hit");
+            EnemyStats enemy = collision.gameObject.GetComponent<EnemyStats>();
+            Vector2 distance = collision.gameObject.transform.position - transform.position;
+            enemy.TakeHit(distance, 3);
         }
     }
 
-    private IEnumerator SpawnMeat(Transform lastPosition)
-    {
-        Debug.Log("drop loot");
-        yield return new WaitForEndOfFrame();
-        objectPooler.SpawnFromPool("Bistec", lastPosition.position, lastPosition.rotation);
-    }
+    //public void SetAttackDirection()
+    //{
+    //    Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+    //    mouseWorldPosition.z = 0;
+    //    Vector2 mouseDirection = (mouseWorldPosition - transform.position).normalized;
+    //    float attackOffset = .65f;
+    //    attackCollider.offset = mouseDirection * attackOffset;
+    //    StartCoroutine(ResetAttackCollider());
+    //}
+
+
+    //IEnumerator ResetAttackCollider()
+    //{
+    //    yield return new WaitForSeconds(.25f);
+    //    attackCollider.offset = Vector2.zero;        
+    //}
 }
