@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,6 +18,10 @@ public class MapManager : MonoBehaviour
     //Variable para corregir la posición al atravesar una puerta
     public float correction = 10.0f; 
     [SerializeField] private Collider2D characterCollider; 
+
+    public GameObject edge;
+
+    // Configuración del Cinemachine
     // Start is called before the first frame update
 
     private void Awake() 
@@ -27,7 +32,7 @@ public class MapManager : MonoBehaviour
     }
     void Start()
     { 
-        
+
     }
 
     //Contacto con cada una de las entradas del mapa
@@ -39,6 +44,7 @@ public class MapManager : MonoBehaviour
         StartCoroutine(TransicionFade(other));
         }
     }
+
 
 /***********************************/
 
@@ -73,14 +79,16 @@ public class MapManager : MonoBehaviour
             piecesOfMap[posI,posJ].SetActive(false);
             posJ ++;
             //Debug.Log("las posición en J es " + posJ);
-            transform.position = new Vector2(-transform.position.x + correction,transform.position.y);
+            transform.position = new Vector2(transform.position.x + correction,transform.position.y);
+            edge.transform.position = new Vector2(edge.transform.position.x + 30, edge.transform.position.y);
             piecesOfMap[posI,posJ].SetActive(true); 
         }
         else if(other.gameObject.CompareTag("Left"))
         {
             piecesOfMap[posI,posJ].SetActive(false);
             posJ --;
-            transform.position = new Vector2(-transform.position.x - correction,transform.position.y);
+            transform.position = new Vector2(transform.position.x - correction,transform.position.y);
+            edge.transform.position = new Vector2(edge.transform.position.x - 30, edge.transform.position.y);
             //Debug.Log("las posición en J es " + posJ);
             piecesOfMap[posI,posJ].SetActive(true); 
         }
@@ -89,7 +97,8 @@ public class MapManager : MonoBehaviour
             piecesOfMap[posI,posJ].SetActive(false);
             posI ++;
             Debug.Log("las posición en I es " + posI);
-            transform.position = new Vector2(transform.position.x,-transform.position.y - correction);
+            transform.position = new Vector2(transform.position.x,transform.position.y - correction);
+            edge.transform.position = new Vector2(edge.transform.position.x, edge.transform.position.y - 23);
             piecesOfMap[posI,posJ].SetActive(true); 
         }
         else if(other.gameObject.CompareTag("Up"))
@@ -97,7 +106,8 @@ public class MapManager : MonoBehaviour
             piecesOfMap[posI,posJ].SetActive(false);
             posI --;
             //Debug.Log("las posición en J es " + posJ);
-            transform.position = new Vector2(transform.position.x,-transform.position.y + correction);
+            transform.position = new Vector2(transform.position.x,transform.position.y + correction);
+            edge.transform.position = new Vector2(edge.transform.position.x, edge.transform.position.y + 23);
             piecesOfMap[posI,posJ].SetActive(true); 
         }
     }
