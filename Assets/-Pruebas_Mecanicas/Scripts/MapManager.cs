@@ -7,23 +7,27 @@ using UnityEngine;
 public class MapManager : MonoBehaviour
 {
     //Variables de Arreglo Bidimensional de Tilemaps 
-    private GameObject[,] piecesOfMap = new GameObject [2,2];
+    [SerializeField] private int dimensionArray; 
+    private GameObject[,] piecesOfMap;
+    private int dimension; 
     [SerializeField] private Animator animationFade; 
     [SerializeField] private GameObject[] maps;
     //Variables de posición del jugador en el mapa
     public int posI, posJ;  
     //Variable para corregir la posición al atravesar una puerta
-    public float correction = 0.5f; 
+    public float correction = 10.0f; 
     [SerializeField] private Collider2D characterCollider; 
     // Start is called before the first frame update
 
     private void Awake() 
     {
-        characterCollider = GetComponent<Collider2D>();  
+        characterCollider = GetComponent<Collider2D>(); 
+        piecesOfMap = new GameObject[dimensionArray , dimensionArray]; 
+        ConstruirMapa();  
     }
     void Start()
     { 
-        ConstruirMapa();  
+        
     }
 
     //Contacto con cada una de las entradas del mapa
@@ -46,9 +50,9 @@ public class MapManager : MonoBehaviour
         {
             for (int j = 0; j < piecesOfMap.GetLength(1); j++)
             {
-                piecesOfMap[i,j] = maps[i*2+j]; 
-                //Debug.Log("Se ha agregado " + maps[i*2+j].name + " en la posición [" + i + "][" + j + "]");
-                if(maps[i*2+j].activeSelf)
+                piecesOfMap[i,j] = maps[i*dimensionArray+j]; 
+                Debug.Log("Se ha agregado " + maps[i*dimensionArray+j].name + " en la posición [" + i + "][" + j + "]");
+                if(maps[i*dimensionArray+j].activeSelf)
                 {
                     posI = i;
                     posJ = j; 
@@ -84,7 +88,7 @@ public class MapManager : MonoBehaviour
         {
             piecesOfMap[posI,posJ].SetActive(false);
             posI ++;
-            //Debug.Log("las posición en J es " + posJ);
+            Debug.Log("las posición en I es " + posI);
             transform.position = new Vector2(transform.position.x,-transform.position.y - correction);
             piecesOfMap[posI,posJ].SetActive(true); 
         }
