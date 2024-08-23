@@ -8,27 +8,25 @@ using UnityEngine.UI;
 public class PlayerController2 : MonoBehaviour
 {
     enum PlayerStates { IDLE, MOVING, ATTACKING, HIT, CHECKING, DEAD };
-    
+
     private float speed = 7f;
     private PlayerStats stats;
     [SerializeField] private PlayerAttack attackCollider;
     [SerializeField] private Rigidbody2D playerRb;
+    [SerializeField] private GameObject damagePopupPlayerPrefab;
     private PlayerStates playerState = PlayerStates.IDLE;
     public Animator animator;
-    private SpriteRenderer playerSprite;
+    //private SpriteRenderer playerSprite;
     public GameObject inventoryPanel;
     private bool isInventoryOpen = false;
 
     private void Awake()
     {
-        playerSprite = GetComponent<SpriteRenderer>();
-    }
-    void Start()
-    {
+        //playerSprite = GetComponent<SpriteRenderer>();
         stats = GetComponent<PlayerStats>();
-        //inventoryPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
     }
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -59,27 +57,21 @@ public class PlayerController2 : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void AdjustSpeedToHealth()
     {
-        if (collision.gameObject.CompareTag("Enemy") && !(playerState is PlayerStates.HIT))
+        if (stats.lifeCur >= 7)
         {
-            TakeHit(collision);
-            StartCoroutine(Recover());
+            speed = 7f;
         }
-
+        else if (stats.lifeCur <= 3)
+        {
+            speed = 3.5f;
+        }
+        else
+        {
+            speed = 5f;
+        }
     }
-
-    private void TakeHit(Collision2D collision)
-    {
-        playerState = PlayerStates.HIT;
-
-        float pushbackForce = 8f;
-        stats.LoseLife(1);
-        Vector2 distance = transform.position - collision.gameObject.transform.position;
-        playerRb.velocity = distance * pushbackForce;
-        Debug.Log("character hit");
-    }
-
     private void Attack()
     {
         playerState = PlayerStates.ATTACKING;
@@ -111,29 +103,30 @@ public class PlayerController2 : MonoBehaviour
         Vector3 position = transform.position;
         transform.position = new Vector3(speedX + position.x, speedY + position.y, position.z);
     }
+    public void TakeHit(Vector2 distance, int damageTaken)
+    {
+        float pushbackForce = 7f;
+        playerState = PlayerStates.HIT;
+        stats.LoseLife(damageTaken);
+        playerRb.velocity = distance * pushbackForce;
+        CreateDamagePopup(damageTaken * -1);
+        StartCoroutine(Recover());
+    }
 
     IEnumerator Recover()
     {
         yield return new WaitForSeconds(0.5f);
         playerRb.velocity *= 0;
         playerState = PlayerStates.MOVING;
-    }
+    }   
 
-    private void AdjustSpeedToHealth()
+    private void CreateDamagePopup(int damage)
     {
-        if (stats.lifeCur >= 7)
-        {
-            speed = 7f;
-        }
-        else if (stats.lifeCur <= 3)
-        {
-            speed = 3.5f;
-        }
-        else
-        {
-            speed = 5f;
-        }
+        Vector3 offset = new(0, 0.5f);
+        GameObject damagePopupObj = Instantiate(damagePopupPlayerPrefab, transform.position + offset, Quaternion.identity);
+        DamagePopupPlayer damagePopup = damagePopupObj.GetComponent<DamagePopupPlayer>();
+        damagePopup.Setup(damage);
     }
 
-    
+
 }

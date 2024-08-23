@@ -11,6 +11,8 @@ TagManager:
   - Down
   - Up
   - Left
+  - Weapon
+  - Obstacle
   layers:
   - Default
   - TransparentFX
