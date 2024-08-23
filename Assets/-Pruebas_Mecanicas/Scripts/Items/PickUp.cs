@@ -90,26 +90,28 @@ public class PickUp : MonoBehaviour
         Debug.Log("TakeItem called");
         for (int i = 0; i < inventory.items.Length; i++)
         {
-            if (!inventory.items[i].isOccupied)
+            // Verifica si el tipo coincide y si el slot no está lleno.
+            if (inventory.items[i].type == type && inventory.items[i].amount < maxItems)
             {
                 inventory.items[i].isOccupied = true;
-                inventory.items[i].amount = 1;
-                inventory.items[i].type = type;
-                inventory.items[i].slotSprite.GetComponent<Image>().sprite = sprite;
-                inventory.items[i].slotSprite.GetComponent<Image>().enabled = true;
-                gameObject.SetActive(false);
-                CloseOptionsMenu();
-                break;
-            }
-            if (inventory.items[i].isOccupied && inventory.items[i].type == type && inventory.items[i].amount < maxItems)
-            {
                 inventory.items[i].amount += 1;
-                gameObject.SetActive(false);
+    
+                var imageComponent = inventory.items[i].slotSprite.GetComponentInChildren<Image>();
+                imageComponent.sprite = sprite;
+                imageComponent.gameObject.SetActive(true);
+
+                inventory.items[i].amountText.text = inventory.items[i].amount.ToString();
+
+                gameObject.SetActive(false); // Desactivar el objeto del mundo.
                 CloseOptionsMenu();
+
+                inventory.CheckForLanceActivation();
+
                 break;
             }
         }
     }
+
 
     public void EatItem()
     {
@@ -121,7 +123,7 @@ public class PickUp : MonoBehaviour
                 stats.AddHungry(3);
                 stats.AddThirst(1);
                 break;
-            case ItemType.FRUIT:
+            case ItemType.CARAMBOLO:
                 stats.AddHungry(1);
                 stats.AddThirst(3);
                 break;

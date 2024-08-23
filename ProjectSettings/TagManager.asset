@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - UIManager
   - Button
+  - InventorySlot
   layers:
   - Default
   - TransparentFX
