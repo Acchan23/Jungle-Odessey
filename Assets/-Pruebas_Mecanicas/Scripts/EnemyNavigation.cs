@@ -5,13 +5,17 @@ using UnityEngine.AI;
 
 public class EnemyNavigation : MonoBehaviour
 {
-    enum EnemyStates { PATROL, FOLLOW, ATTACK, FLEE, DIE };
+    //enum EnemyStates { PATROL, WAITING, FOLLOW, ATTACK, FLEE, DIE };
 
     [SerializeField] private EnemyStats enemyStats;
     [SerializeField] private Transform target;
     [SerializeField] private NavMeshAgent agent;
-    //private float cooldown;
-    private EnemyStates state = EnemyStates.PATROL;
+    //public Transform[] wayPoints;
+    //private int currentWayPoint;
+    //private float minimumDistance = 0.3f;
+    //private float waitTime = 1f;
+    ////private float cooldown;
+    //private EnemyStates state = EnemyStates.PATROL;
     private void Awake()
     {
         enemyStats = GetComponent<EnemyStats>();
@@ -23,40 +27,52 @@ public class EnemyNavigation : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
+
+    private void OnEnable()
+    {
+        //wayPoints = GetComponentInParent<PatrolPoints>().wayPointsArray;
+        //if (wayPoints.Length > 0)
+        //{
+        //    PickNewDestination();
+        //}
+    }
+
     private void Update()
     {
-        switch (state)
-        {
-            case EnemyStates.PATROL:
-                agent.speed = enemyStats.Speed;
-                MoveTowardsPlayer();
-                break;
-            case EnemyStates.FOLLOW:
-                agent.speed = enemyStats.Speed;
-                MoveTowardsPlayer();
-                break;
-            case EnemyStates.ATTACK:
-                agent.speed = 0;
-                break;
-            case EnemyStates.FLEE:
-                agent.speed = enemyStats.Speed;
-                break;
-            case EnemyStates.DIE:
-                break;
-            default:
-                break;
-        }
-
-        
+        //transform.position = new(transform.position.x, transform.position.y, 0);
+        agent.speed = enemyStats.Speed;
+        MoveTowardsPlayer();
     }
+
+    //private void PickNewDestination()
+    //{
+    //    currentWayPoint = Random.Range(0, wayPoints.Length);
+    //    agent.SetDestination(wayPoints[currentWayPoint].position);
+    //}
+
+    //private void KeepPatrolling()
+    //{
+    //    agent.SetDestination(wayPoints[currentWayPoint].position);
+    //    if (agent.remainingDistance < minimumDistance && !agent.pathPending)
+    //    {
+    //        StartCoroutine(PatrolWait());
+    //    }
+    //}
+
+    //private IEnumerator PatrolWait()
+    //{
+    //    yield return new WaitForSeconds(waitTime);
+    //    PickNewDestination();
+    //}
+
     private void MoveTowardsPlayer()
     {
-        if (transform.parent.GetComponent<NavigatorManager>().navigationModifier != null)
-        {
-            agent.SetDestination(target.position);
-        }
+        agent.SetDestination(target.position);
+        //if (transform.parent.GetComponent<NavigatorManager>().navigationModifier != null)
+        //{
+        //}
     }
-    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -67,12 +83,12 @@ public class EnemyNavigation : MonoBehaviour
 
     IEnumerator AttackSequence(Collision2D collision)
     {
-        state = EnemyStates.ATTACK;
+        agent.speed = 0;
         PlayerController2 player = collision.gameObject.GetComponent<PlayerController2>();
         int damage = enemyStats.Damage;
         Vector2 distance = collision.gameObject.transform.position - transform.position;
         player.TakeHit(distance, damage);
         yield return new WaitForSecondsRealtime(1.0f);
-        state = EnemyStates.FOLLOW;
+        agent.speed = enemyStats.Speed;
     }
 }

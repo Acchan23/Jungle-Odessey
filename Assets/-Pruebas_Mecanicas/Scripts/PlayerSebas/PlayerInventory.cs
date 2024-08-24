@@ -58,15 +58,16 @@ public class PlayerInventory : MonoBehaviour
         }
     }
  //
-    public void WoodSearch()
+    public bool HasEnoughWood()
     {
          foreach (var item in items)
         {
             if (item.type == ItemType.WOOD && item.isOccupied && item.amount == 3)
             {
-                GameManager.Instance.Victory();
+                return true;
             }
         }
+        return false;
     }
     public void CheckForLanceActivation()
     {

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     [SerializeField] private ObjectPooler objectPooler;
     [SerializeField] private GameObject victoryPanel;
+    [SerializeField] private Transform rescueSite;
     //private readonly float victorytimer = 60f;
 
     private void Awake()
@@ -39,7 +40,8 @@ public class GameManager : MonoBehaviour
 
     public void Victory()
     {
-        objectPooler.SpawnFromPool("Fire", transform.position, transform.rotation);
+        Vector3 site = rescueSite.position - new Vector3(0,2,0); 
+        objectPooler.SpawnFromPool("Fire", site, rescueSite.rotation);
         Time.timeScale = 0;
         victoryPanel.SetActive(true);
     }
