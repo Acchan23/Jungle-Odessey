@@ -9,7 +9,7 @@ public class PlayerController2 : MonoBehaviour
 {
     enum PlayerStates { IDLE, MOVING, ATTACKING, HIT, CHECKING, DEAD };
 
-    private float speed = 7f;
+    private float speed = 6f;
     private PlayerStats stats;
     [SerializeField] private PlayerAttack attackCollider;
     [SerializeField] private Rigidbody2D playerRb;
@@ -20,6 +20,7 @@ public class PlayerController2 : MonoBehaviour
     public GameObject inventoryPanel;
     private bool isInventoryOpen = false;
 
+
     private void Awake()
     {
         //playerSprite = GetComponent<SpriteRenderer>();
@@ -29,6 +30,7 @@ public class PlayerController2 : MonoBehaviour
     
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             OpenInventory();
@@ -61,7 +63,7 @@ public class PlayerController2 : MonoBehaviour
     {
         if (stats.lifeCur >= 7)
         {
-            speed = 7f;
+            speed = 6f;
         }
         else if (stats.lifeCur <= 3)
         {
@@ -75,8 +77,10 @@ public class PlayerController2 : MonoBehaviour
     private void Attack()
     {
         playerState = PlayerStates.ATTACKING;
-        //attackCollider.SetAttackDirection();
-        animator.SetTrigger("attack");
+        attackCollider.SetAttackDirection();
+        //animator.SetTrigger("attack");
+        //animator.SetFloat("AttackX", mouseDirection.x);
+        //animator.SetFloat("AttackY", mouseDirection.y);
         playerState = PlayerStates.MOVING;
     }
 
@@ -85,19 +89,30 @@ public class PlayerController2 : MonoBehaviour
         playerState = PlayerStates.MOVING;
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float speedY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
-        animator.SetFloat("movement", speedX * speed);
+        animator.SetFloat("MovementX", speedX);
+        animator.SetFloat("MovementY", speedY);
 
-        if (speedX < 0)
+        if (speedX != 0 || speedY != 0)
         {
-            //playerSprite.flipX = true;
-            transform.localScale = new Vector3(-1, 1, 1);
+            animator.SetFloat("LastX", speedX);
+            animator.SetFloat("LastY", speedY);
         }
 
-        if (speedX > 0)
+        if (speedX == 0 && speedY == 0)
         {
-            //playerSprite.flipX = false;
-            transform.localScale = new Vector3(1, 1, 1);
+            playerState = PlayerStates.IDLE;
         }
+        //if (speedX < 0)
+        // {
+        //playerSprite.flipX = true;
+        //   transform.localScale = new Vector3(-1, 1, 1);
+        //}
+
+        //if (speedX > 0)
+        //{
+        //playerSprite.flipX = false;
+        //   transform.localScale = new Vector3(1, 1, 1);
+        //}
 
 
         Vector3 position = transform.position;
