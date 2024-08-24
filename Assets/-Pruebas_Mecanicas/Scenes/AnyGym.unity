@@ -12391,6 +12391,11 @@ MonoBehaviour:
   DefaultRotInfluence: {x: 1, y: 1, z: 1}
   RestPositionOffset: {x: 0, y: 0, z: 0}
   RestRotationOffset: {x: 0, y: 0, z: 0}
+--- !u!61 &2100303306 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5204139190453209338, guid: 6f56d1ba57b3a467794aa1a1802c9523, type: 3}
+  m_PrefabInstance: {fileID: 6710320289686033715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6522949352176021491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12536,6 +12541,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Matias
       objectReference: {fileID: 0}
+    - target: {fileID: 6710320289730723288, guid: 6f56d1ba57b3a467794aa1a1802c9523, type: 3}
+      propertyPath: attackCollider
+      value: 
+      objectReference: {fileID: 2100303306}
     - target: {fileID: 6710320289730723291, guid: 6f56d1ba57b3a467794aa1a1802c9523, type: 3}
       propertyPath: m_RootOrder
       value: 12

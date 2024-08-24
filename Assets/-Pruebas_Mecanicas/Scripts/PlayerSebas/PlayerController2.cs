@@ -11,7 +11,7 @@ public class PlayerController2 : MonoBehaviour
 
     private float speed = 6f;
     private PlayerStats stats;
-    [SerializeField] private PlayerAttack attackCollider;
+    [SerializeField] private BoxCollider2D attackCollider;
     [SerializeField] private Rigidbody2D playerRb;
     [SerializeField] private GameObject damagePopupPlayerPrefab;
     private PlayerStates playerState = PlayerStates.IDLE;
@@ -19,6 +19,7 @@ public class PlayerController2 : MonoBehaviour
     //private SpriteRenderer playerSprite;
     public GameObject inventoryPanel;
     private bool isInventoryOpen = false;
+    private Vector2 lastMovementDirection = Vector2.zero;
 
 
     private void Awake()
@@ -49,14 +50,9 @@ public class PlayerController2 : MonoBehaviour
         isInventoryOpen = !isInventoryOpen;
         inventoryPanel.SetActive(isInventoryOpen);
 
-        if (isInventoryOpen)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }
+        isInventoryOpen = !isInventoryOpen;
+        inventoryPanel.SetActive(isInventoryOpen);
+        Time.timeScale = isInventoryOpen ? 0f : 1f;
     }
 
     private void AdjustSpeedToHealth()
@@ -77,11 +73,33 @@ public class PlayerController2 : MonoBehaviour
     private void Attack()
     {
         playerState = PlayerStates.ATTACKING;
-        attackCollider.SetAttackDirection();
+        animator.SetBool("isAttacking", true);
+
+        animator.SetFloat("AttackX", lastMovementDirection.x);
+        animator.SetFloat("AttackY", lastMovementDirection.y);
+        float attackOffset = 0.65f;
+        if (Mathf.Abs(lastMovementDirection.x) > Mathf.Abs(lastMovementDirection.y))
+        {
+            attackCollider.offset = new Vector2(lastMovementDirection.x > 0 ? attackOffset : -attackOffset, 0);
+        }
+        else
+        {
+            attackCollider.offset = new Vector2(0, lastMovementDirection.y > 0 ? attackOffset : -attackOffset);
+        }
         //animator.SetTrigger("attack");
         //animator.SetFloat("AttackX", mouseDirection.x);
         //animator.SetFloat("AttackY", mouseDirection.y);
+        //playerState = PlayerStates.MOVING;
+        StartCoroutine(EndAttack());
+    }
+
+    private IEnumerator EndAttack()
+    {
+        // Ajusta el tiempo según sea necesario para que la animación de ataque dure lo suficiente
+        yield return new WaitForSeconds(0.5f); // Ajusta el tiempo según la duración de la animación
         playerState = PlayerStates.MOVING;
+        animator.SetBool("isAttacking", false); // Desactiva el estado de ataque
+        attackCollider.offset = Vector2.zero;   // Restablece el offset del collider
     }
 
     private void Move()
@@ -89,11 +107,13 @@ public class PlayerController2 : MonoBehaviour
         playerState = PlayerStates.MOVING;
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float speedY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
-        animator.SetFloat("MovementX", speedX);
-        animator.SetFloat("MovementY", speedY);
+
+        animator.SetFloat("MovementX", speedX );
+        animator.SetFloat("MovementY", speedY );
 
         if (speedX != 0 || speedY != 0)
         {
+            lastMovementDirection = new Vector2(speedX, speedY);
             animator.SetFloat("LastX", speedX);
             animator.SetFloat("LastY", speedY);
         }
@@ -101,6 +121,12 @@ public class PlayerController2 : MonoBehaviour
         if (speedX == 0 && speedY == 0)
         {
             playerState = PlayerStates.IDLE;
+            animator.SetBool("isMoving", false);
+        }
+        else
+        {
+            playerState = PlayerStates.MOVING;
+            animator.SetBool("isMoving", true);
         }
         //if (speedX < 0)
         // {
