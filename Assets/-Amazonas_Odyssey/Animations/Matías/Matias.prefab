@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 377482264}
   m_Layer: 0
   m_Name: Matias
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,9 +264,9 @@ MonoBehaviour:
   thirst: {fileID: 0}
   life: {fileID: 0}
   hungry: {fileID: 0}
-  thirstCur: 10
-  lifeCur: 10
-  hungryCur: 10
+  thirstCur: 6
+  lifeCur: 8
+  hungryCur: 6
 --- !u!114 &95152365
 MonoBehaviour:
   m_ObjectHideFlags: 0
