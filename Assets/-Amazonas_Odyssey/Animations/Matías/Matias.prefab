@@ -40,7 +40,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5155722566218620203}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -72,8 +72,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 5204139190453209338}
-  mainCamera: {fileID: 0}
-  animator: {fileID: 6710320289730723285}
 --- !u!1 &6710320289730723286
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +88,7 @@ GameObject:
   - component: {fileID: 6710320289730723288}
   - component: {fileID: 6710320289730723295}
   - component: {fileID: 95152365}
+  - component: {fileID: 377482264}
   m_Layer: 0
   m_Name: Matias
   m_TagString: Untagged
@@ -153,7 +152,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 708447834, guid: accc437e6120c4a59b3f584895ce50f2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -245,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f62073f5c4fc64fb25bccf93d64b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: {fileID: 6710320289686033717}
+  attackCollider: {fileID: 5204139190453209338}
   playerRb: {fileID: 6710320289730723290}
   damagePopupPlayerPrefab: {fileID: 3671260354562456099, guid: 8269c67101341a94c801e7d2c6a344eb, type: 3}
   animator: {fileID: 6710320289730723285}
@@ -280,5 +279,95 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458d455f0507c8448a949f9dacdf26db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lanceSprite: {fileID: 0}
-  items: []
+  lanceSprite: {fileID: 21300000, guid: 086fe4ffe0caa6d43a935cb93f8acbc9, type: 3}
+  items:
+  - isOccupied: 0
+    amount: 0
+    type: 1
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 2
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 3
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 4
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 5
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 6
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 0
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 0
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+  - isOccupied: 0
+    amount: 0
+    type: 0
+    slotSprite: {fileID: 0}
+    amountText: {fileID: 0}
+--- !u!114 &377482264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6710320289730723286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3088213a709e9347a7e53c94404a5f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dimensionArray: 5
+  animationFade: {fileID: 0}
+  maps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  posI: 0
+  posJ: 0
+  correction: 5
+  characterCollider: {fileID: 0}
+  edge: {fileID: 0}
