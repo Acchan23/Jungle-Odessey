@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Jaguar
   m_EditorClassIdentifier: 
   life: 5
-  damage: 1
-  speed: 2.5
+  damage: 3
+  speed: 4.5
+  enemyName: 2
+  lootQuantity: 2
