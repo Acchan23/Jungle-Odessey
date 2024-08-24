@@ -14,6 +14,7 @@ public class EnemyStats : MonoBehaviour
     private float speed;
     private float life;
     public float Speed { get { return speed; } }
+    public int Damage { get { return damage; } }
 
     private void Awake()
     {
@@ -42,8 +43,8 @@ public class EnemyStats : MonoBehaviour
     {
         life -= damageTaken;
 
-        CreateDamagePopup(damageTaken * -1);
-        
+        CreateDamagePopup(damageTaken);
+
         if (life > 0)
         {
             GetPushedBack(distance);
@@ -54,27 +55,26 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnLoot(string loot)
-    {
-        yield return new WaitForEndOfFrame();
-        Debug.Log($"drop {loot}");
-        objectPooler.SpawnFromPool(loot, transform.position, transform.rotation);
-        gameObject.SetActive(false);
-    }
-
     private void GetPushedBack(Vector2 distance)
     {
         float pushbackForce = 7f;
-        enemyCollider.enabled = false;
         speed = 0;
+        enemyCollider.enabled = false;
         enemyRb.velocity = distance * pushbackForce;
         StartCoroutine(Recover());
     }
 
+    private IEnumerator SpawnLoot(string loot)
+    {
+        yield return new WaitForEndOfFrame();
+        objectPooler.SpawnFromPool(loot, transform.position, transform.rotation);
+        gameObject.SetActive(false);
+    }
+    
     private IEnumerator Recover()
     {
         yield return new WaitForSeconds(0.5f);
-        enemyRb.velocity *= 0;
+        enemyRb.velocity = Vector2.zero;
         speed = data.speed;
         enemyCollider.enabled = true;
     }
@@ -85,7 +85,4 @@ public class EnemyStats : MonoBehaviour
         DamagePopup damagePopup = damagePopupObj.GetComponent<DamagePopup>();
         damagePopup.Setup(damage);
     }
-
-
-
 }

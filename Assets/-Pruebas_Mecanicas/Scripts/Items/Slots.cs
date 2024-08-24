@@ -28,7 +28,7 @@ public class Slots : MonoBehaviour
                 stats.AddHungry(3);
                 stats.AddThirst(1);
                 break;
-            case ItemType.FRUIT:
+            case ItemType.CARAMBOLO:
                 stats.AddHungry(1);
                 stats.AddThirst(3);
                 break;

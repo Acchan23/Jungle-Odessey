@@ -11,20 +11,20 @@ public class PlayerStats : MonoBehaviour
     public Slider life;
     public Slider hungry;
 
-    [Range(0, 100)] public int thirstCur;
+    [Range(0, 10)] public int thirstCur;
     [Range(0, 10)] public int lifeCur;
     [Range(0, 10)] public int hungryCur;
 
-    public float timeRecoveryLife = 2;
+    private float timeRecoveryLife = 2;
     private float timeRecoveryLifeCur = 0;
 
-    public float timeLostHungry = 5;
+    private float timeLostHungry = 5;
     private float timeLostHungryCur = 0;
 
-    public float timeLostThirst = 5;
+    private float timeLostThirst = 5;
     private float timeLostThirstCur = 0;
 
-    public float timeLostLife = 5;
+    private float timeLostLife = 10;
     private float timeLostLifeCur = 0;
 
     private void Awake()

@@ -21,7 +21,9 @@ public class EnemySpawner : MonoBehaviour
             int _spawnInterval = Random.Range(minSpawnTime, maxSpawnTime);
             yield return new WaitForSeconds(_spawnInterval);
             Transform randomSpawnPoint = PickRandomPosition();
-            objectPooler.SpawnFromPool("PoisonFrog", randomSpawnPoint.position, Quaternion.identity);
+            GameObject spawnedEnemy = objectPooler.SpawnFromPool("PoisonFrog", randomSpawnPoint.position, Quaternion.identity);
+            spawnedEnemy.transform.SetParent(transform.parent);
+
         }
     }
 
