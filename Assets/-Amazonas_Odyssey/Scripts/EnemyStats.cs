@@ -13,6 +13,9 @@ public class EnemyStats : MonoBehaviour
     private int damage;
     private float speed;
     private float life;
+    public EnemyName enemyName;
+    public int lootQuantity;
+
     public float Speed { get { return speed; } }
     public int Damage { get { return damage; } }
 
@@ -37,6 +40,8 @@ public class EnemyStats : MonoBehaviour
         damage = data.damage;
         speed = data.speed;
         life = data.life;
+        enemyName = data.enemyName;
+        lootQuantity = data.lootQuantity;
     }
 
     public void TakeHit(Vector2 distance, int damageTaken)
@@ -67,10 +72,13 @@ public class EnemyStats : MonoBehaviour
     private IEnumerator SpawnLoot(string loot)
     {
         yield return new WaitForEndOfFrame();
-        objectPooler.SpawnFromPool(loot, transform.position, transform.rotation);
+        for (int i = 0; i < lootQuantity; i++)
+        {
+            objectPooler.SpawnFromPool(loot, transform.position, transform.rotation);
+        }
         gameObject.SetActive(false);
     }
-    
+
     private IEnumerator Recover()
     {
         yield return new WaitForSeconds(0.5f);
