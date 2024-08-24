@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 718a74e00bae0734a899636eb93b2d11, type: 3}
   m_Name: Capibara
   m_EditorClassIdentifier: 
-  life: 5
-  damage: 1
+  life: 15
+  damage: 2
   speed: 2.5
+  enemyName: 3
+  lootQuantity: 3

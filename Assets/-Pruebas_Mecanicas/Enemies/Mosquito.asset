@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 718a74e00bae0734a899636eb93b2d11, type: 3}
   m_Name: Mosquito
   m_EditorClassIdentifier: 
-  life: 5
+  life: 2
   damage: 1
-  speed: 2.5
+  speed: 4
+  enemyName: 1
+  lootQuantity: 0

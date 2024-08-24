@@ -41,7 +41,28 @@ public class EnemyNavigation : MonoBehaviour
     {
         //transform.position = new(transform.position.x, transform.position.y, 0);
         agent.speed = enemyStats.Speed;
-        MoveTowardsPlayer();
+        //MoveTowardsPlayer();
+
+        switch (enemyStats.enemyName)
+        {
+            case EnemyName.FROG:
+                break;
+            case EnemyName.MOSQUITO:
+                MoveTowardsPlayer();
+                break;
+            case EnemyName.JAGUAR:
+                MoveTowardsPlayer();
+                break;
+            case EnemyName.CAPIBARA:
+                break;
+            case EnemyName.SNAKE:
+                MoveTowardsPlayer();
+                break;
+            default:
+                break;
+        }
+
+        
     }
 
     //private void PickNewDestination()
