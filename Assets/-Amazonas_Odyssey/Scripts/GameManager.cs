@@ -37,6 +37,10 @@ public class GameManager : MonoBehaviour
     }*/
 
     public void GameOver() => SceneManager.LoadScene(0);
+    public void Reset() {
+        
+        SceneManager.LoadScene(0); 
+    }
 
     public void Victory()
     {
