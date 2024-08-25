@@ -49,7 +49,6 @@ public class PlayerInventory : MonoBehaviour
     {
         foreach (var item in items)
         {
-            item.amountText = item.slotSprite.GetComponentInChildren<TextMeshProUGUI>();
 
             if (item.amountText != null)
             {

@@ -1291,6 +1291,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 356772428, guid: 7160f4b4a8faa3f46ad693a3bda6b484, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 523192387, guid: 7160f4b4a8faa3f46ad693a3bda6b484, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 592475177, guid: 7160f4b4a8faa3f46ad693a3bda6b484, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097086859, guid: 7160f4b4a8faa3f46ad693a3bda6b484, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1103049470, guid: 7160f4b4a8faa3f46ad693a3bda6b484, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197267541, guid: 7160f4b4a8faa3f46ad693a3bda6b484, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508667467, guid: 7160f4b4a8faa3f46ad693a3bda6b484, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1945318100, guid: 7160f4b4a8faa3f46ad693a3bda6b484, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8049737242905399711, guid: 7160f4b4a8faa3f46ad693a3bda6b484, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3454,6 +3486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPooler: {fileID: 96283395}
   victoryPanel: {fileID: 8408587881224213298}
+  rescueSite: {fileID: 0}
 --- !u!1 &1747725280
 GameObject:
   m_ObjectHideFlags: 0
