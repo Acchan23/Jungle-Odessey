@@ -248,7 +248,7 @@ MonoBehaviour:
   playerRb: {fileID: 6710320289730723290}
   damagePopupPlayerPrefab: {fileID: 3671260354562456099, guid: 8269c67101341a94c801e7d2c6a344eb, type: 3}
   animator: {fileID: 6710320289730723285}
-  inventoryPanel: {fileID: 8049737243973094136, guid: 7160f4b4a8faa3f46ad693a3bda6b484, type: 3}
+  inventoryPanel: {fileID: 0}
 --- !u!114 &6710320289730723295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +266,7 @@ MonoBehaviour:
   hungry: {fileID: 0}
   thirstCur: 6
   lifeCur: 8
-  hungryCur: 6
+  hungryCur: 2
 --- !u!114 &95152365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,21 +309,6 @@ MonoBehaviour:
   - isOccupied: 0
     amount: 0
     type: 6
-    slotSprite: {fileID: 0}
-    amountText: {fileID: 0}
-  - isOccupied: 0
-    amount: 0
-    type: 0
-    slotSprite: {fileID: 0}
-    amountText: {fileID: 0}
-  - isOccupied: 0
-    amount: 0
-    type: 0
-    slotSprite: {fileID: 0}
-    amountText: {fileID: 0}
-  - isOccupied: 0
-    amount: 0
-    type: 0
     slotSprite: {fileID: 0}
     amountText: {fileID: 0}
 --- !u!114 &377482264

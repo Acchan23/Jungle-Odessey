@@ -49,9 +49,6 @@ public class PlayerController2 : MonoBehaviour
     {
         isInventoryOpen = !isInventoryOpen;
         inventoryPanel.SetActive(isInventoryOpen);
-
-        isInventoryOpen = !isInventoryOpen;
-        inventoryPanel.SetActive(isInventoryOpen);
         Time.timeScale = isInventoryOpen ? 0f : 1f;
     }
 
