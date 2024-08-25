@@ -115,4 +115,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  nameItem: Carne
+  interactionPrompt: {fileID: 0}
+  optionsMenu: {fileID: 0}

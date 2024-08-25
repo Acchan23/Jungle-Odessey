@@ -14,10 +14,11 @@ public class PlayerController2 : MonoBehaviour
     [SerializeField] private BoxCollider2D attackCollider;
     [SerializeField] private Rigidbody2D playerRb;
     [SerializeField] private GameObject damagePopupPlayerPrefab;
+    [SerializeField] private GameObject inventoryPanel;
+    [SerializeField] private AudioClip attackSound;
     private PlayerStates playerState = PlayerStates.IDLE;
     public Animator animator;
     //private SpriteRenderer playerSprite;
-    public GameObject inventoryPanel;
     private bool isInventoryOpen = false;
     private Vector2 lastMovementDirection = Vector2.zero;
 
@@ -26,9 +27,15 @@ public class PlayerController2 : MonoBehaviour
     {
         //playerSprite = GetComponent<SpriteRenderer>();
         stats = GetComponent<PlayerStats>();
-        inventoryPanel.SetActive(false);
+        //inventoryPanel.gameObject.SetActive(false);
     }
-    
+
+    private void Start()
+    {
+        inventoryPanel = GameObject.FindGameObjectWithTag("Inventory");
+        inventoryPanel.SetActive(isInventoryOpen);
+    }
+
     void Update()
     {
 
@@ -47,9 +54,6 @@ public class PlayerController2 : MonoBehaviour
 
     private void OpenInventory()
     {
-        isInventoryOpen = !isInventoryOpen;
-        inventoryPanel.SetActive(isInventoryOpen);
-
         isInventoryOpen = !isInventoryOpen;
         inventoryPanel.SetActive(isInventoryOpen);
         Time.timeScale = isInventoryOpen ? 0f : 1f;
@@ -72,12 +76,13 @@ public class PlayerController2 : MonoBehaviour
     }
     private void Attack()
     {
+        AudioManager2.Instance.PlaySFX(attackSound);
+
         playerState = PlayerStates.ATTACKING;
         animator.SetBool("isAttacking", true);
-
         animator.SetFloat("AttackX", lastMovementDirection.x);
         animator.SetFloat("AttackY", lastMovementDirection.y);
-        float attackOffset = 0.65f;
+        float attackOffset = 0.2f;
         if (Mathf.Abs(lastMovementDirection.x) > Mathf.Abs(lastMovementDirection.y))
         {
             attackCollider.offset = new Vector2(lastMovementDirection.x > 0 ? attackOffset : -attackOffset, 0);
@@ -90,7 +95,7 @@ public class PlayerController2 : MonoBehaviour
         //animator.SetFloat("AttackX", mouseDirection.x);
         //animator.SetFloat("AttackY", mouseDirection.y);
         //playerState = PlayerStates.MOVING;
-        StartCoroutine(EndAttack());
+        StartCoroutine(EndAttack());        
     }
 
     private IEnumerator EndAttack()
@@ -108,8 +113,8 @@ public class PlayerController2 : MonoBehaviour
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float speedY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
-        animator.SetFloat("MovementX", speedX );
-        animator.SetFloat("MovementY", speedY );
+        animator.SetFloat("MovementX", speedX);
+        animator.SetFloat("MovementY", speedY);
 
         if (speedX != 0 || speedY != 0)
         {
@@ -159,7 +164,7 @@ public class PlayerController2 : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         playerRb.velocity *= 0;
         playerState = PlayerStates.MOVING;
-    }   
+    }
 
     private void CreateDamagePopup(int damage)
     {

@@ -36,10 +36,10 @@ public class PickUp : MonoBehaviour
             OpenOptionsMenu();
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        
+        if (collision.CompareTag("Player"))
         {
             isPlayerNear = true;
             interactionPrompt.SetActive(true);
@@ -47,9 +47,10 @@ public class PickUp : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        
+        if (collision.CompareTag("Player"))
         {
             isPlayerNear = false;
             interactionPrompt.SetActive(false);
@@ -57,7 +58,7 @@ public class PickUp : MonoBehaviour
             if (currentPickUp == this) currentPickUp = null; // Limpiamos la referencia estática
         }
     }
-
+   
     private void OpenOptionsMenu()
     {
         Time.timeScale = 0f; // Pausar el juego si es necesario

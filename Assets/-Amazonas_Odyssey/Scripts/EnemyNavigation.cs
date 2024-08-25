@@ -46,6 +46,7 @@ public class EnemyNavigation : MonoBehaviour
         switch (enemyStats.enemyName)
         {
             case EnemyName.FROG:
+                MoveTowardsPlayer();
                 break;
             case EnemyName.MOSQUITO:
                 MoveTowardsPlayer();
