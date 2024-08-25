@@ -13,6 +13,8 @@ TagManager:
   - Left
   - Weapon
   - Obstacle
+  - InventorySlot
+  - Inventory
   layers:
   - Default
   - TransparentFX

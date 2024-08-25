@@ -43,7 +43,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -247,8 +247,9 @@ MonoBehaviour:
   attackCollider: {fileID: 5204139190453209338}
   playerRb: {fileID: 6710320289730723290}
   damagePopupPlayerPrefab: {fileID: 3671260354562456099, guid: 8269c67101341a94c801e7d2c6a344eb, type: 3}
-  animator: {fileID: 6710320289730723285}
   inventoryPanel: {fileID: 8049737243973094136, guid: 7160f4b4a8faa3f46ad693a3bda6b484, type: 3}
+  attackSound: {fileID: 0}
+  animator: {fileID: 6710320289730723285}
 --- !u!114 &6710320289730723295
 MonoBehaviour:
   m_ObjectHideFlags: 0

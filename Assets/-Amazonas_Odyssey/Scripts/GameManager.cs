@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+       
+    }
+
+    private void Start()
+    {
         if (Instance != null)
         {
             Destroy(this.gameObject);
@@ -20,12 +25,8 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
         }
-    }
-
-    private void Start()
-    {
         victoryPanel.SetActive(false);
         //StartCoroutine(SpawnBonfire());
     }
