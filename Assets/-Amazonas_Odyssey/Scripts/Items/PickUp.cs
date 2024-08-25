@@ -9,7 +9,7 @@ public class PickUp : MonoBehaviour
     private Sprite sprite;
 
     public ItemType type;
-    private readonly int maxItems = 5;
+    private readonly int maxItems = 10;
     private bool isPlayerNear = false;
     [SerializeField] private GameObject interactionPrompt;
     [SerializeField] private GameObject optionsMenu;
