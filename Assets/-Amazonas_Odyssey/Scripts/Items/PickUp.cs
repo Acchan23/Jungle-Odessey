@@ -9,7 +9,7 @@ public class PickUp : MonoBehaviour
     private Sprite sprite;
 
     public ItemType type;
-    private readonly int maxItems = 5;
+    private readonly int maxItems = 10;
     private bool isPlayerNear = false;
     [SerializeField] private GameObject interactionPrompt;
     [SerializeField] private GameObject optionsMenu;
@@ -91,22 +91,28 @@ public class PickUp : MonoBehaviour
         Debug.Log("TakeItem called");
         for (int i = 0; i < inventory.items.Length; i++)
         {
-            // Verifica si el tipo coincide y si el slot no está lleno.
             if (inventory.items[i].type == type && inventory.items[i].amount < maxItems)
             {
-                inventory.items[i].isOccupied = true;
+
+                    inventory.items[i].type = type;
+                    inventory.items[i].isOccupied = true;
                 inventory.items[i].amount += 1;
-    
+
                 var imageComponent = inventory.items[i].slotSprite.GetComponentInChildren<Image>();
                 imageComponent.sprite = sprite;
+                imageComponent.enabled = true;
                 imageComponent.gameObject.SetActive(true);
+
+                Color color = imageComponent.color;
+                color.a = 1f;
+                imageComponent.color = color;
 
                 inventory.items[i].amountText.text = inventory.items[i].amount.ToString();
 
-                gameObject.SetActive(false); // Desactivar el objeto del mundo.
+                gameObject.SetActive(false);
                 CloseOptionsMenu();
 
-                inventory.CheckForLanceActivation();
+                //inventory.CheckForLanceActivation();
 
                 break;
             }

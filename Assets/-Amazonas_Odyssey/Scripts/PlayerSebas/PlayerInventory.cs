@@ -25,15 +25,15 @@ public class PlayerInventory : MonoBehaviour
     {
         items[numSlot].isOccupied = false;
         items[numSlot].amount = 0;
-        items[numSlot].type = ItemType.NONE;
-        img.sprite = null;
-        img.enabled = false;
+        img.color = new Color(img.color.r, img.color.g, img.color.b, 0.5f); // Opcional: cambia la transparencia para indicar que está vacío
+
 
         if (items[numSlot].amountText != null)
         {
             items[numSlot].amountText.text = "0";
         }
     }
+
 
     public void InitializeSlots()
     {
@@ -56,10 +56,10 @@ public class PlayerInventory : MonoBehaviour
             }
         }
     }
- //
+    //
     public bool HasEnoughWood()
     {
-         foreach (var item in items)
+        foreach (var item in items)
         {
             if (item.type == ItemType.WOOD && item.isOccupied && item.amount == 3)
             {
@@ -67,41 +67,6 @@ public class PlayerInventory : MonoBehaviour
             }
         }
         return false;
-    }
-    public void CheckForLanceActivation()
-    {
-        bool hasKnife = false;
-        bool hasWood = false;
-
-        // Verifica si el inventario tiene el cuchillo y la madera
-        foreach (var item in items)
-        {
-            if (item.type == ItemType.KNIFE && item.isOccupied)
-            {
-                hasKnife = true;
-            }
-            if (item.type == ItemType.WOOD && item.isOccupied)
-            {
-                hasWood = true;
-            }
-        }
-
-        // Si ambos están presentes, activa la lanza
-        if (hasKnife && hasWood)
-        {
-            foreach (var item in items)
-            {
-                if (item.type == ItemType.lANCE)
-                {
-                    item.isOccupied = true;
-                    // Aquí puedes actualizar la imagen del item si es necesario
-                    var imageComponent = item.slotSprite.GetComponentInChildren<Image>();
-                    imageComponent.sprite = lanceSprite;
-                    imageComponent.gameObject.SetActive(true);
-                    break;
-                }
-            }
-        }
     }
 
 }
@@ -113,7 +78,8 @@ public class Item
     public int amount;
     public ItemType type;
     public GameObject slotSprite;
-    public TextMeshProUGUI amountText; // Campo para el texto del contador.
+    public TextMeshProUGUI amountText;
+
 }
 
 public enum ItemType

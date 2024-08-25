@@ -110,7 +110,7 @@ public class EnemyNavigation : MonoBehaviour
         int damage = enemyStats.Damage;
         Vector2 distance = collision.gameObject.transform.position - transform.position;
         player.TakeHit(distance, damage);
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(1.5f);
         agent.speed = enemyStats.Speed;
     }
 }
