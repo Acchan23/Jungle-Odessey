@@ -41,6 +41,7 @@ public class Slots : MonoBehaviour
         }
 
         inventory.items[numSlot].amount -= 1;
+        inventory.items[numSlot].amountText.text = inventory.items[numSlot].amount.ToString();
         if (inventory.items[numSlot].amount == 0)
         {
             inventory.EmptySlot(numSlot, GetComponent<Image>());

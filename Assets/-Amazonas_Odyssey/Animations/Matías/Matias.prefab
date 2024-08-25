@@ -198,7 +198,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005699247, y: -0.113034986}
+  m_Offset: {x: -0.0037602335, y: 0.0013768375}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -209,7 +209,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1688627, y: 0.08717348}
+  m_Size: {x: 0.17274073, y: 0.2772134}
   m_EdgeRadius: 0
 --- !u!50 &6710320289730723290
 Rigidbody2D:
@@ -227,10 +227,10 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 20794b8f9146e8a4d91f9a6e447ff5a6, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &6710320289730723288
 MonoBehaviour:
@@ -247,8 +247,8 @@ MonoBehaviour:
   attackCollider: {fileID: 5204139190453209338}
   playerRb: {fileID: 6710320289730723290}
   damagePopupPlayerPrefab: {fileID: 3671260354562456099, guid: 8269c67101341a94c801e7d2c6a344eb, type: 3}
-  inventoryPanel: {fileID: 8049737243973094136, guid: 7160f4b4a8faa3f46ad693a3bda6b484, type: 3}
-  attackSound: {fileID: 0}
+  inventoryPanel: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 72b9b0118085a154c8ad8c6f758537d6, type: 3}
   animator: {fileID: 6710320289730723285}
 --- !u!114 &6710320289730723295
 MonoBehaviour:
@@ -310,21 +310,6 @@ MonoBehaviour:
   - isOccupied: 0
     amount: 0
     type: 6
-    slotSprite: {fileID: 0}
-    amountText: {fileID: 0}
-  - isOccupied: 0
-    amount: 0
-    type: 0
-    slotSprite: {fileID: 0}
-    amountText: {fileID: 0}
-  - isOccupied: 0
-    amount: 0
-    type: 0
-    slotSprite: {fileID: 0}
-    amountText: {fileID: 0}
-  - isOccupied: 0
-    amount: 0
-    type: 0
     slotSprite: {fileID: 0}
     amountText: {fileID: 0}
 --- !u!114 &377482264

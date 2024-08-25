@@ -93,13 +93,9 @@ public class PickUp : MonoBehaviour
         {
             if (inventory.items[i].type == type && inventory.items[i].amount < maxItems)
             {
-                Debug.Log($"Asignando el objeto de tipo {type} al slot {i}");
 
-                if (inventory.items[i].type == ItemType.NONE)
-                {
                     inventory.items[i].type = type;
                     inventory.items[i].isOccupied = true;
-                }
                 inventory.items[i].amount += 1;
 
                 var imageComponent = inventory.items[i].slotSprite.GetComponentInChildren<Image>();
