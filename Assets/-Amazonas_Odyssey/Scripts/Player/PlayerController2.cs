@@ -9,7 +9,7 @@ public class PlayerController2 : MonoBehaviour
 {
     enum PlayerStates { IDLE, MOVING, ATTACKING, HIT, CHECKING, DEAD };
 
-    private float speed = 6f;
+    private float speed = 3;
     private PlayerStats stats;
     [SerializeField] private BoxCollider2D attackCollider;
     [SerializeField] private Rigidbody2D playerRb;
@@ -38,12 +38,12 @@ public class PlayerController2 : MonoBehaviour
 
     void Update()
     {
+        //AdjustSpeedToHealth();
 
         if (Input.GetKeyDown(KeyCode.P))
         {
             OpenInventory();
         }
-        AdjustSpeedToHealth();
 
         if (playerState is PlayerStates.IDLE || playerState is PlayerStates.MOVING)
         {
@@ -63,7 +63,7 @@ public class PlayerController2 : MonoBehaviour
     {
         if (stats.lifeCur >= 7)
         {
-            speed = 6f;
+            speed = 5f;
         }
         else if (stats.lifeCur <= 3)
         {
@@ -71,7 +71,7 @@ public class PlayerController2 : MonoBehaviour
         }
         else
         {
-            speed = 5f;
+            speed = 4f;
         }
     }
     private void Attack()
