@@ -50,5 +50,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         victoryPanel.SetActive(true);
     }
-
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
