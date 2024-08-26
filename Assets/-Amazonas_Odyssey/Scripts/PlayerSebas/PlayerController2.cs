@@ -52,7 +52,7 @@ public class PlayerController2 : MonoBehaviour
         }
     }
 
-    private void OpenInventory()
+    public void OpenInventory()
     {
         isInventoryOpen = !isInventoryOpen;
         inventoryPanel.SetActive(isInventoryOpen);
