@@ -60,12 +60,20 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    private void GetPushedBack(Vector2 distance)
+    public void GetPushedBack(Vector2 distance)
     {
-        float pushbackForce = 7f;
+        float pushbackForce = 5f;
         speed = 0;
         enemyCollider.enabled = false;
         enemyRb.velocity = distance * pushbackForce;
+        StartCoroutine(Recover());
+    }
+
+    public void GetPushedBack(Vector2 distance, float recoil)
+    {
+        speed = 0;
+        enemyCollider.enabled = false;
+        enemyRb.velocity = -distance * recoil;
         StartCoroutine(Recover());
     }
 
