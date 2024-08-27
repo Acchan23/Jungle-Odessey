@@ -28,16 +28,11 @@ public class GameManager : MonoBehaviour
             //DontDestroyOnLoad(this.gameObject);
         }
         victoryPanel.SetActive(false);
-        //StartCoroutine(SpawnBonfire());
-    }
-
-   /* private IEnumerator SpawnBonfire()
-    {
-        yield return new WaitForSeconds(victorytimer);
-        objectPooler.SpawnFromPool("Fire", transform.position, transform.rotation);
-    }*/
+        
+    }   
 
     public void GameOver() => SceneManager.LoadScene(0);
+
     public void Reset() {
         
         SceneManager.LoadScene(0); 
@@ -45,8 +40,6 @@ public class GameManager : MonoBehaviour
 
     public void Victory()
     {
-        Vector3 site = rescueSite.position - new Vector3(0,2,0); 
-        objectPooler.SpawnFromPool("Fire", site, rescueSite.rotation);
         Time.timeScale = 0;
         victoryPanel.SetActive(true);
     }

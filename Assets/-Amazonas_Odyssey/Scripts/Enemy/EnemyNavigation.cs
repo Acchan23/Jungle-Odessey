@@ -10,6 +10,7 @@ public class EnemyNavigation : MonoBehaviour
     [SerializeField] private EnemyStats enemyStats;
     [SerializeField] private Transform target;
     [SerializeField] private NavMeshAgent agent;
+    private Vector2 originalPos;
     //public Transform[] wayPoints;
     //private int currentWayPoint;
     //private float minimumDistance = 0.3f;
@@ -20,6 +21,7 @@ public class EnemyNavigation : MonoBehaviour
     {
         enemyStats = GetComponent<EnemyStats>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        originalPos = transform.position;
     }
     private void Start()
     {
@@ -30,6 +32,7 @@ public class EnemyNavigation : MonoBehaviour
 
     private void OnEnable()
     {
+        transform.position = originalPos;
         //wayPoints = GetComponentInParent<PatrolPoints>().wayPointsArray;
         //if (wayPoints.Length > 0)
         //{
@@ -106,11 +109,14 @@ public class EnemyNavigation : MonoBehaviour
     IEnumerator AttackSequence(Collision2D collision)
     {
         agent.speed = 0;
-        PlayerController2 player = collision.gameObject.GetComponent<PlayerController2>();
+        
+        float recoil = 3.5f;
         int damage = enemyStats.Damage;
         Vector2 distance = collision.gameObject.transform.position - transform.position;
+        PlayerController2 player = collision.gameObject.GetComponent<PlayerController2>();
         player.TakeHit(distance, damage);
-        yield return new WaitForSecondsRealtime(1.5f);
+        enemyStats.GetPushedBack(distance, recoil);
+        yield return new WaitForSecondsRealtime(3f);
         agent.speed = enemyStats.Speed;
     }
 }

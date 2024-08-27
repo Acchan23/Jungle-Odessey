@@ -33,6 +33,7 @@ public class Slots : MonoBehaviour
                 stats.AddThirst(3);
                 break;
             case ItemType.MEDICINAL:
+                stats.AddHungry(1);
                 stats.AddLife(1);
                 break;
             default:

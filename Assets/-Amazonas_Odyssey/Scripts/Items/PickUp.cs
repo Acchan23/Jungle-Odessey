@@ -38,7 +38,7 @@ public class PickUp : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
         if (collision.CompareTag("Player"))
         {
             isPlayerNear = true;
@@ -49,7 +49,7 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
+
         if (collision.CompareTag("Player"))
         {
             isPlayerNear = false;
@@ -58,7 +58,7 @@ public class PickUp : MonoBehaviour
             if (currentPickUp == this) currentPickUp = null; // Limpiamos la referencia estática
         }
     }
-   
+
     private void OpenOptionsMenu()
     {
         Time.timeScale = 0f; // Pausar el juego si es necesario
@@ -94,8 +94,8 @@ public class PickUp : MonoBehaviour
             if (inventory.items[i].type == type && inventory.items[i].amount < maxItems)
             {
 
-                    inventory.items[i].type = type;
-                    inventory.items[i].isOccupied = true;
+                inventory.items[i].type = type;
+                inventory.items[i].isOccupied = true;
                 inventory.items[i].amount += 1;
 
                 var imageComponent = inventory.items[i].slotSprite.GetComponentInChildren<Image>();
