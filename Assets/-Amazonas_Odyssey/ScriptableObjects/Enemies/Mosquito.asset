@@ -16,5 +16,5 @@ MonoBehaviour:
   damage: 1
   lootQuantity: 0
   speed: 4
-  collisionRadius: 0
+  collisionRadius: 0.15
   species: 1

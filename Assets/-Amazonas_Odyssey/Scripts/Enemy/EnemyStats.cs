@@ -15,11 +15,12 @@ public class EnemyStats : MonoBehaviour
     private float life;
     private int lootQuantity;
     private float collisionRadius; 
-    public Species species;
+    private Species species;
 
     public float Speed { get { return speed; } }
     public int Damage { get { return damage; } }
     public float CollisionRadius { get { return collisionRadius; } }
+    public Species Species { get { return species; } }
 
     private void Awake()
     {

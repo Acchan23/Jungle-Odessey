@@ -13,14 +13,10 @@ public class AggressiveEnemy : EnemyNavigation
 
     private void TrackPlayer()
     {
-        Debug.Log($"State:{state}");
-        Debug.Log($"starts tracking");
         float distance = Vector2.Distance(player.position, transform.position);
         if (distance < safeDistance)
         {
             state = EnemyStates.CHASE;
-            Debug.Log($"State:{state}");
-            ;
         }
     }
 }

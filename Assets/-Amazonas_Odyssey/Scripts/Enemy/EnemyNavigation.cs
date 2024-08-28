@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyNavigation : MonoBehaviour
 {
     protected enum EnemyStates { PATROL, WAITING, CHASE, ATTACK, FLEE, DIE };
+    
 
     protected EnemyStats enemyStats;
     protected Transform target;
@@ -16,10 +17,7 @@ public class EnemyNavigation : MonoBehaviour
     protected int currentWayPoint;
     protected float minimumDistance;
     protected EnemyStates state;
-    protected Transform player;
-    //private float waitTime = 1f;
-    //private float cooldown;
-
+    protected Transform player;    
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -51,10 +49,13 @@ public class EnemyNavigation : MonoBehaviour
 
     private void Update()
     {
-        //transform.position = new(transform.position.x, transform.position.y, 0);
+        //transform.position = new(transform.position.x, transform.position.y, 0);        
         NextMove();
-        
+
+
     }
+
+   
     protected void NextMove()
     {
         switch (state)
@@ -112,7 +113,7 @@ public class EnemyNavigation : MonoBehaviour
 
     private void Turn()
     {
-        if (enemyStats.species == Species.CAPIBARA) return;
+        if (enemyStats.Species == Species.CAPIBARA) return;
 
         if (transform.position.x < target.position.x)
         {
