@@ -13,9 +13,11 @@ public class PlayerAttack : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             Debug.Log("Enemy got hit");
-            EnemyStats enemy = collision.gameObject.GetComponent<EnemyStats>();
-            Vector2 distance = collision.gameObject.transform.position - transform.position;
-            enemy.TakeHit(distance, 3);
+            EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
+            EnemyNavigation enemyNav = collision.gameObject.GetComponent<EnemyNavigation>();
+            Vector2 direction = (collision.gameObject.transform.position - transform.position).normalized;
+            enemyStats.TakeHit(direction, 3);
+            enemyNav.ChasePlayer();
         }
     }
 

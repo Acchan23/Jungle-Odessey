@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 5
   damage: 1
-  speed: 2.5
-  enemyName: 0
   lootQuantity: 1
+  speed: 2
+  collisionRadius: 0.35
+  enemyName: 0
