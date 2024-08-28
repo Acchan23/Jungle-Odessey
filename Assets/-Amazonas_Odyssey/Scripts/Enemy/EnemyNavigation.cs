@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyNavigation : MonoBehaviour
 {
-    protected enum EnemyStates { PATROL, WAITING, CHASE, ATTACK, FLEE, DIE };
-    
+    protected enum EnemyStates { PATROL, CHASE, ATTACK };
+
 
     protected EnemyStats enemyStats;
     protected Transform target;
@@ -17,7 +17,8 @@ public class EnemyNavigation : MonoBehaviour
     protected int currentWayPoint;
     protected float minimumDistance;
     protected EnemyStates state;
-    protected Transform player;    
+    protected Transform player;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -51,11 +52,9 @@ public class EnemyNavigation : MonoBehaviour
     {
         //transform.position = new(transform.position.x, transform.position.y, 0);        
         NextMove();
-
-
     }
 
-   
+
     protected void NextMove()
     {
         switch (state)
@@ -66,8 +65,6 @@ public class EnemyNavigation : MonoBehaviour
             case EnemyStates.CHASE:
                 ChasePlayer();
                 break;
-            case EnemyStates.DIE:
-                break;
             default:
                 break;
         }
@@ -76,6 +73,7 @@ public class EnemyNavigation : MonoBehaviour
     protected void Patrol()
     {
         target = wayPoints[currentWayPoint];
+        Turn();
 
         agent.speed = enemyStats.Speed;
         agent.SetDestination(target.position);
@@ -83,7 +81,6 @@ public class EnemyNavigation : MonoBehaviour
         if (agent.remainingDistance < minimumDistance)
         {
             PickNewWayPoint();
-            Turn();
         }
     }
     protected void PickNewWayPoint()
@@ -111,9 +108,9 @@ public class EnemyNavigation : MonoBehaviour
         //if (transform.parent.GetComponent<NavigatorManager>().navigationModifier != null){}
     }
 
-    private void Turn()
+    protected void Turn()
     {
-        if (enemyStats.Species == Species.CAPIBARA) return;
+        if (enemyStats.Species == Species.CAPIBARA || enemyStats.Species == Species.SNAKE) return;
 
         if (transform.position.x < target.position.x)
         {
