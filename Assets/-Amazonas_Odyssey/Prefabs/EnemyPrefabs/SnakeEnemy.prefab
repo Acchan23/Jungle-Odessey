@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5354426928820987278}
   - component: {fileID: 4672408627531275354}
   - component: {fileID: 5705467554971848387}
+  - component: {fileID: 268365101184187208}
   m_Layer: 0
   m_Name: SnakeEnemy
   m_TagString: Enemy
@@ -207,3 +208,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &268365101184187208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560407805759694449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f3c5070eee3594bbf603afbf489f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 5354426928820987278}
+  animator: {fileID: 3023675182104501650}
