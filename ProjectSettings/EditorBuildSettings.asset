@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/-Amazonas_Odyssey/Scenes/StartMenu.unity
     guid: 6635b6c5d8cd8f94eb150a2666859290
   - enabled: 1
+    path: Assets/-Amazonas_Odyssey/Scenes/Intro.unity
+    guid: d60d13993c15a864cb35f4213ed1f973
+  - enabled: 1
     path: Assets/-Amazonas_Odyssey/Scenes/Main.unity
     guid: 659d70bf655a5744389bef974c1f0f9d
   m_configObjects: {}

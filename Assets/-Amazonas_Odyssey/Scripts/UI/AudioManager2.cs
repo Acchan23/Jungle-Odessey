@@ -88,4 +88,9 @@ public class AudioManager2 : MonoBehaviour
             musicSource.Play();
         }
     }
+
+    public void StopMusic()
+    {   
+        musicSource.Pause();
+    }
 }
