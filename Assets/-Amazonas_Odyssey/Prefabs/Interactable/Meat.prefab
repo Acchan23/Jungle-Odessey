@@ -98,11 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cba647ba58eeb24e847839f438cf532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  descriptionText: '30% protein, it''s delicious '
   type: 4
   interactionPrompt: {fileID: 0}
   optionsMenu: {fileID: 0}
-  eatSound: {fileID: 8300000, guid: 5185a669419696e4eb89b00942619f2b, type: 3}
-  takeItem: {fileID: 8300000, guid: 2272b77cf44dd1b40b901894ba260c85, type: 3}
+  description: {fileID: 0}
 --- !u!61 &1284284422697759647
 BoxCollider2D:
   m_ObjectHideFlags: 0
