@@ -79,7 +79,6 @@ public class Item
     public ItemType type;
     public GameObject slotSprite;
     public TextMeshProUGUI amountText;
-
 }
 
 public enum ItemType

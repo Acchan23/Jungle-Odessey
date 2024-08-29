@@ -124,6 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cba647ba58eeb24e847839f438cf532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  descriptionText: '60% water, it''s delicious '
   type: 5
   interactionPrompt: {fileID: 0}
   optionsMenu: {fileID: 0}
+  description: {fileID: 0}
