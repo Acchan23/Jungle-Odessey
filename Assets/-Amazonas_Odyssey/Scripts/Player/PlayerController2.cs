@@ -16,6 +16,7 @@ public class PlayerController2 : MonoBehaviour
     [SerializeField] private GameObject damagePopupPlayerPrefab;
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip damageReceived; 
     private PlayerStates playerState = PlayerStates.IDLE;
     public Animator animator;
     private bool isInventoryOpen = false;
@@ -147,7 +148,8 @@ public class PlayerController2 : MonoBehaviour
         transform.position = new Vector3(speedX + position.x, speedY + position.y, position.z);
     }
     public void TakeHit(Vector2 distance, int damageTaken)
-    {
+    {   
+        AudioManager2.Instance.PlaySFX(damageReceived);
         float pushbackForce = 5f;
         playerState = PlayerStates.HIT;
         stats.LoseLife(damageTaken);

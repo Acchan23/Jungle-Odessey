@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: 9581e400df25c9448adbc0dd9a616e15, type: 3}
-  putOnMouseSound: {fileID: 8300000, guid: 7e01ee8c2cd945e4ca5a327b73002be7, type: 3}
+  putOnMouseSound: {fileID: 8300000, guid: 5819b581b6ea2474d8ae78afb6225bc0, type: 3}
 --- !u!114 &124036293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,6 +774,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280691646}
   m_CullTransparentMesh: 1
+--- !u!1 &293791774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6467029873975175024, guid: 157d349b39010124585630efb39e1679, type: 3}
+  m_PrefabInstance: {fileID: 100277082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &293791779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293791774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+--- !u!114 &293791780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293791774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22eeb56e31079114aa4074fae98ad3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 0}
+  putOnMouseSound: {fileID: 0}
 --- !u!1 &395677057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,7 +1213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: 9581e400df25c9448adbc0dd9a616e15, type: 3}
-  putOnMouseSound: {fileID: 8300000, guid: 7e01ee8c2cd945e4ca5a327b73002be7, type: 3}
+  putOnMouseSound: {fileID: 8300000, guid: 5819b581b6ea2474d8ae78afb6225bc0, type: 3}
 --- !u!114 &532121436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,7 +1716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: 9581e400df25c9448adbc0dd9a616e15, type: 3}
-  putOnMouseSound: {fileID: 8300000, guid: 7e01ee8c2cd945e4ca5a327b73002be7, type: 3}
+  putOnMouseSound: {fileID: 8300000, guid: 5819b581b6ea2474d8ae78afb6225bc0, type: 3}
 --- !u!114 &1450924216
 MonoBehaviour:
   m_ObjectHideFlags: 0

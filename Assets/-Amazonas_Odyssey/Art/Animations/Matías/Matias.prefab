@@ -249,6 +249,7 @@ MonoBehaviour:
   damagePopupPlayerPrefab: {fileID: 3671260354562456099, guid: 8269c67101341a94c801e7d2c6a344eb, type: 3}
   inventoryPanel: {fileID: 0}
   attackSound: {fileID: 8300000, guid: 72b9b0118085a154c8ad8c6f758537d6, type: 3}
+  damageReceived: {fileID: 8300000, guid: 2272b77cf44dd1b40b901894ba260c85, type: 3}
   animator: {fileID: 6710320289730723285}
 --- !u!114 &6710320289730723295
 MonoBehaviour:

@@ -13,6 +13,8 @@ public class PickUp : MonoBehaviour
     private bool isPlayerNear = false;
     [SerializeField] private GameObject interactionPrompt;
     [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private AudioClip eatSound; 
+    [SerializeField] private AudioClip takeItem; 
 
     // Referencia estática a la instancia actual
     public static PickUp currentPickUp;
@@ -88,6 +90,7 @@ public class PickUp : MonoBehaviour
 
     public void TakeItem()
     {
+        AudioManager2.Instance.PlaySFX(takeItem);
         Debug.Log("TakeItem called");
         for (int i = 0; i < inventory.items.Length; i++)
         {
@@ -121,7 +124,8 @@ public class PickUp : MonoBehaviour
 
 
     public void EatItem()
-    {
+    {   
+        AudioManager2.Instance.PlaySFX(eatSound);
         Debug.Log("Eat called");
         PlayerStats stats = PlayerStats.instance;
         switch (type)

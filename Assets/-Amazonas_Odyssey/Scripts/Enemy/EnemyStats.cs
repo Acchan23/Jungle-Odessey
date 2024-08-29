@@ -6,6 +6,7 @@ public class EnemyStats : MonoBehaviour
 {
     [SerializeField] private EnemyData data;
     [SerializeField] private GameObject damagePopupPrefab;
+    [SerializeField] private AudioClip soundDamage;  
     private ObjectPooler objectPooler;
     private Rigidbody2D enemyRb;
     private Collider2D enemyCollider;
@@ -51,6 +52,7 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeHit(Vector2 direction, int damageTaken)
     {
+        AudioManager2.Instance.PlaySFX(soundDamage);
         life -= damageTaken;
 
         CreateDamagePopup(damageTaken);

@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: adaf4b3d05354524fbd11c86440f71a5, type: 2}
   damagePopupPrefab: {fileID: 3671260354562456099, guid: d4947b159228a82419f6e6358305d95f, type: 3}
+  soundDamage: {fileID: 8300000, guid: 2272b77cf44dd1b40b901894ba260c85, type: 3}
 --- !u!114 &8195925833707129466
 MonoBehaviour:
   m_ObjectHideFlags: 0

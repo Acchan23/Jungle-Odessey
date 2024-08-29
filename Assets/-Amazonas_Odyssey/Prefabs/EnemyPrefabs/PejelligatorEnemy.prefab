@@ -138,6 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: c813b3000c566f845b0ac9bfcecd1630, type: 2}
   damagePopupPrefab: {fileID: 3671260354562456099, guid: d4947b159228a82419f6e6358305d95f, type: 3}
+  soundDamage: {fileID: 8300000, guid: 38aec2b7fbd6adb408029160c13433e2, type: 3}
 --- !u!195 &6030876841831747381
 NavMeshAgent:
   m_ObjectHideFlags: 0
