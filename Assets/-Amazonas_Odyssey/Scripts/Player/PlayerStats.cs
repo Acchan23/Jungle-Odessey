@@ -18,10 +18,10 @@ public class PlayerStats : MonoBehaviour
     private float timeRecoveryLife = 2;
     private float timeRecoveryLifeCur = 0;
 
-    private float timeLostHungry = 5;
+    private float timeLostHungry = 10;
     private float timeLostHungryCur = 0;
 
-    private float timeLostThirst = 5;
+    private float timeLostThirst = 10;
     private float timeLostThirstCur = 0;
 
     private float timeLostLife = 10;
@@ -102,7 +102,7 @@ public class PlayerStats : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (lifeCur == 0) GameManager.Instance.GameOver();
+        if (lifeCur <= 0) GameManager.Instance.GameOver();
     }
 
     private void UpdateStats()
