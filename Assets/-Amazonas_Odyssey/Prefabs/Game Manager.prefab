@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPooler: {fileID: 0}
   victoryPanel: {fileID: 0}
+  inventory: {fileID: 0}
   fire: {fileID: 9189288049022012307, guid: 0bee53bd12cbe42fc9ab51752ae12635, type: 3}
   rescueSite: {fileID: 0}
