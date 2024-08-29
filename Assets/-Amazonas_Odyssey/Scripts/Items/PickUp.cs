@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class PickUp : MonoBehaviour
 {
     PlayerInventory inventory;
     private Sprite sprite;
+    [SerializeField] private string descriptionText;
 
     public ItemType type;
     private readonly int maxItems = 10;
     private bool isPlayerNear = false;
     [SerializeField] private GameObject interactionPrompt;
     [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject description;
+
 
     // Referencia estática a la instancia actual
     public static PickUp currentPickUp;
@@ -28,6 +31,7 @@ public class PickUp : MonoBehaviour
         Transform uiManager = GameObject.FindWithTag("UIManager").transform;
         interactionPrompt = uiManager.GetChild(0).gameObject;
         optionsMenu = uiManager.GetChild(1).gameObject;
+        description = optionsMenu.transform.GetChild(0).gameObject;
     }
     void Update()
     {
@@ -38,18 +42,20 @@ public class PickUp : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
         if (collision.CompareTag("Player"))
         {
             isPlayerNear = true;
             interactionPrompt.SetActive(true);
+            description.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().SetText(descriptionText);
+            description.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = sprite;
             currentPickUp = this; // Actualizamos la referencia estática
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
+
         if (collision.CompareTag("Player"))
         {
             isPlayerNear = false;
@@ -58,7 +64,7 @@ public class PickUp : MonoBehaviour
             if (currentPickUp == this) currentPickUp = null; // Limpiamos la referencia estática
         }
     }
-   
+
     private void OpenOptionsMenu()
     {
         Time.timeScale = 0f; // Pausar el juego si es necesario
@@ -94,8 +100,8 @@ public class PickUp : MonoBehaviour
             if (inventory.items[i].type == type && inventory.items[i].amount < maxItems)
             {
 
-                    inventory.items[i].type = type;
-                    inventory.items[i].isOccupied = true;
+                inventory.items[i].type = type;
+                inventory.items[i].isOccupied = true;
                 inventory.items[i].amount += 1;
 
                 var imageComponent = inventory.items[i].slotSprite.GetComponentInChildren<Image>();

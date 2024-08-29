@@ -9,7 +9,7 @@ public class PlayerController2 : MonoBehaviour
 {
     enum PlayerStates { IDLE, MOVING, ATTACKING, HIT, CHECKING, DEAD };
 
-    private float speed = 3;
+    private readonly float speed = 3;
     private PlayerStats stats;
     [SerializeField] private BoxCollider2D attackCollider;
     [SerializeField] private Rigidbody2D playerRb;
@@ -18,16 +18,13 @@ public class PlayerController2 : MonoBehaviour
     [SerializeField] private AudioClip attackSound;
     private PlayerStates playerState = PlayerStates.IDLE;
     public Animator animator;
-    //private SpriteRenderer playerSprite;
     private bool isInventoryOpen = false;
     private Vector2 lastMovementDirection = Vector2.zero;
 
 
     private void Awake()
     {
-        //playerSprite = GetComponent<SpriteRenderer>();
         stats = GetComponent<PlayerStats>();
-        //inventoryPanel.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -59,21 +56,21 @@ public class PlayerController2 : MonoBehaviour
         Time.timeScale = isInventoryOpen ? 0f : 1f;
     }
 
-    private void AdjustSpeedToHealth()
-    {
-        if (stats.lifeCur >= 7)
-        {
-            speed = 5f;
-        }
-        else if (stats.lifeCur <= 3)
-        {
-            speed = 3.5f;
-        }
-        else
-        {
-            speed = 4f;
-        }
-    }
+    //private void AdjustSpeedToHealth()
+    //{
+    //    if (stats.lifeCur >= 7)
+    //    {
+    //        speed = 5f;
+    //    }
+    //    else if (stats.lifeCur <= 3)
+    //    {
+    //        speed = 3.5f;
+    //    }
+    //    else
+    //    {
+    //        speed = 4f;
+    //    }
+    //}
     private void Attack()
     {
         AudioManager2.Instance.PlaySFX(attackSound);
@@ -95,7 +92,7 @@ public class PlayerController2 : MonoBehaviour
         //animator.SetFloat("AttackX", mouseDirection.x);
         //animator.SetFloat("AttackY", mouseDirection.y);
         //playerState = PlayerStates.MOVING;
-        StartCoroutine(EndAttack());        
+        StartCoroutine(EndAttack());
     }
 
     private IEnumerator EndAttack()
@@ -151,7 +148,7 @@ public class PlayerController2 : MonoBehaviour
     }
     public void TakeHit(Vector2 distance, int damageTaken)
     {
-        float pushbackForce = 7f;
+        float pushbackForce = 5f;
         playerState = PlayerStates.HIT;
         stats.LoseLife(damageTaken);
         playerRb.velocity = distance * pushbackForce;

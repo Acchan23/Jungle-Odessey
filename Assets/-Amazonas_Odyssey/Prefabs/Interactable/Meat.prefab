@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5359277430394673091}
   - component: {fileID: 4903669506789455342}
   - component: {fileID: 628419246}
-  - component: {fileID: -3321057892306896715}
+  - component: {fileID: 1284284422697759647}
   m_Layer: 0
   m_Name: Meat
   m_TagString: Untagged
@@ -27,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7508051773477204016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -63, y: -5, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6d8318c4611a0c14fa1bdb581cb544c3, type: 3}
+  m_Sprite: {fileID: -911006128, guid: d81e929b50a8542f5b3145eaccb07729, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,10 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cba647ba58eeb24e847839f438cf532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  descriptionText: '30% protein, it''s delicious '
   type: 4
   interactionPrompt: {fileID: 0}
   optionsMenu: {fileID: 0}
---- !u!61 &-3321057892306896715
+  description: {fileID: 0}
+--- !u!61 &1284284422697759647
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,12 +120,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.865, y: 0.825}
+    oldSize: {x: 0.22, y: 0.21}
     newSize: {x: 0.5, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.865, y: 0.825}
+  m_Size: {x: 0.22, y: 0.21}
   m_EdgeRadius: 0

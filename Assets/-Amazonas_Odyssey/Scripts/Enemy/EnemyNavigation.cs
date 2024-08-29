@@ -5,32 +5,43 @@ using UnityEngine.AI;
 
 public class EnemyNavigation : MonoBehaviour
 {
-    //enum EnemyStates { PATROL, WAITING, FOLLOW, ATTACK, FLEE, DIE };
+    protected enum EnemyStates { PATROL, CHASE, ATTACK };
 
-    [SerializeField] private EnemyStats enemyStats;
-    [SerializeField] private Transform target;
-    [SerializeField] private NavMeshAgent agent;
-    //public Transform[] wayPoints;
-    //private int currentWayPoint;
-    //private float minimumDistance = 0.3f;
-    //private float waitTime = 1f;
-    ////private float cooldown;
-    //private EnemyStates state = EnemyStates.PATROL;
+
+    protected EnemyStats enemyStats;
+    protected Transform target;
+    protected NavMeshAgent agent;
+    protected SpriteRenderer spriteRenderer;
+    protected Vector2 originalPos;
+    [SerializeField] protected Transform[] wayPoints;
+    protected int currentWayPoint;
+    protected float minimumDistance;
+    protected EnemyStates state;
+    protected Transform player;
+
     private void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         enemyStats = GetComponent<EnemyStats>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalPos = transform.position;
     }
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        agent.radius = enemyStats.CollisionRadius;
+        minimumDistance = enemyStats.CollisionRadius;
     }
 
     private void OnEnable()
     {
-        //wayPoints = GetComponentInParent<PatrolPoints>().wayPointsArray;
+        state = EnemyStates.PATROL;
+        transform.position = originalPos;
+        wayPoints = GetComponentInParent<PatrolPoints>().wayPointsArray;
+        PickNewWayPoint();
         //if (wayPoints.Length > 0)
         //{
         //    PickNewDestination();
@@ -39,60 +50,76 @@ public class EnemyNavigation : MonoBehaviour
 
     private void Update()
     {
-        //transform.position = new(transform.position.x, transform.position.y, 0);
-        agent.speed = enemyStats.Speed;
-        //MoveTowardsPlayer();
+        //transform.position = new(transform.position.x, transform.position.y, 0);        
+        NextMove();
+    }
 
-        switch (enemyStats.enemyName)
+
+    protected void NextMove()
+    {
+        switch (state)
         {
-            case EnemyName.FROG:
-                MoveTowardsPlayer();
+            case EnemyStates.PATROL:
+                Patrol();
                 break;
-            case EnemyName.MOSQUITO:
-                MoveTowardsPlayer();
-                break;
-            case EnemyName.JAGUAR:
-                MoveTowardsPlayer();
-                break;
-            case EnemyName.CAPIBARA:
-                break;
-            case EnemyName.SNAKE:
-                MoveTowardsPlayer();
+            case EnemyStates.CHASE:
+                ChasePlayer();
                 break;
             default:
                 break;
         }
-
-        
     }
 
-    //private void PickNewDestination()
-    //{
-    //    currentWayPoint = Random.Range(0, wayPoints.Length);
-    //    agent.SetDestination(wayPoints[currentWayPoint].position);
-    //}
-
-    //private void KeepPatrolling()
-    //{
-    //    agent.SetDestination(wayPoints[currentWayPoint].position);
-    //    if (agent.remainingDistance < minimumDistance && !agent.pathPending)
-    //    {
-    //        StartCoroutine(PatrolWait());
-    //    }
-    //}
-
-    //private IEnumerator PatrolWait()
-    //{
-    //    yield return new WaitForSeconds(waitTime);
-    //    PickNewDestination();
-    //}
-
-    private void MoveTowardsPlayer()
+    protected void Patrol()
     {
+        target = wayPoints[currentWayPoint];
+        Turn();
+
+        agent.speed = enemyStats.Speed;
         agent.SetDestination(target.position);
-        //if (transform.parent.GetComponent<NavigatorManager>().navigationModifier != null)
-        //{
-        //}
+
+        if (agent.remainingDistance < minimumDistance)
+        {
+            PickNewWayPoint();
+        }
+    }
+    protected void PickNewWayPoint()
+    {
+        int lastWayPoint = currentWayPoint;
+
+        while (lastWayPoint == currentWayPoint)
+        {
+            currentWayPoint = Random.Range(0, wayPoints.Length);
+        }
+    }
+    public void ChasePlayer()
+    {
+        target = player;
+
+        if (state != EnemyStates.CHASE)
+        {
+            state = EnemyStates.CHASE;
+        }
+
+        agent.speed = enemyStats.Speed;
+        agent.SetDestination(target.position);
+        Turn();
+
+        //if (transform.parent.GetComponent<NavigatorManager>().navigationModifier != null){}
+    }
+
+    protected void Turn()
+    {
+        if (enemyStats.Species == Species.CAPIBARA || enemyStats.Species == Species.SNAKE) return;
+
+        if (transform.position.x < target.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -105,12 +132,21 @@ public class EnemyNavigation : MonoBehaviour
 
     IEnumerator AttackSequence(Collision2D collision)
     {
+        state = EnemyStates.ATTACK;
         agent.speed = 0;
-        PlayerController2 player = collision.gameObject.GetComponent<PlayerController2>();
+        float recoil = 3.5f;
         int damage = enemyStats.Damage;
         Vector2 distance = collision.gameObject.transform.position - transform.position;
+        PlayerController2 player = collision.gameObject.GetComponent<PlayerController2>();
+
         player.TakeHit(distance, damage);
-        yield return new WaitForSecondsRealtime(1.5f);
+        enemyStats.GetPushedBack(distance, recoil);
+
+        state = EnemyStates.CHASE;
+
+        yield return new WaitForSecondsRealtime(0.75f);
         agent.speed = enemyStats.Speed;
     }
+
+
 }

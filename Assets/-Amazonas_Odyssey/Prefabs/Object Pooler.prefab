@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6149641927801118449}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,12 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pools:
-  - prefab: {fileID: 5109025614376903145, guid: 7fc5aa5e56d65de4eb9e2aff5f3b8509, type: 3}
-    tag: PoisonFrog
-    size: 3
-  - prefab: {fileID: 5502207434096917339, guid: 75f822ebeea338247a278221d71cf473, type: 3}
+  - prefab: {fileID: 7508051773477204016, guid: 735cbc1105b439042bbb4b6623146f8f, type: 3}
     tag: Bistec
-    size: 5
+    size: 20
   - prefab: {fileID: 658773086839325702, guid: 6acce8cf61bf1134eaffc2ea5caf62ab, type: 3}
     tag: Fire
     size: 1

@@ -13,11 +13,14 @@ public class EnemyStats : MonoBehaviour
     private int damage;
     private float speed;
     private float life;
-    public EnemyName enemyName;
-    public int lootQuantity;
+    private int lootQuantity;
+    private float collisionRadius; 
+    private Species species;
 
     public float Speed { get { return speed; } }
     public int Damage { get { return damage; } }
+    public float CollisionRadius { get { return collisionRadius; } }
+    public Species Species { get { return species; } }
 
     private void Awake()
     {
@@ -40,11 +43,13 @@ public class EnemyStats : MonoBehaviour
         damage = data.damage;
         speed = data.speed;
         life = data.life;
-        enemyName = data.enemyName;
+        collisionRadius = data.collisionRadius;
+        species = data.species;
         lootQuantity = data.lootQuantity;
+        
     }
 
-    public void TakeHit(Vector2 distance, int damageTaken)
+    public void TakeHit(Vector2 direction, int damageTaken)
     {
         life -= damageTaken;
 
@@ -52,7 +57,7 @@ public class EnemyStats : MonoBehaviour
 
         if (life > 0)
         {
-            GetPushedBack(distance);
+            GetPushedBack(direction);
         }
         else
         {
@@ -60,21 +65,32 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    private void GetPushedBack(Vector2 distance)
+    public void GetPushedBack(Vector2 direction)
     {
-        float pushbackForce = 7f;
+        float pushbackForce = 5f;
         speed = 0;
         enemyCollider.enabled = false;
-        enemyRb.velocity = distance * pushbackForce;
+        enemyRb.velocity = direction * pushbackForce;
+        StartCoroutine(Recover());
+    }
+
+    public void GetPushedBack(Vector2 distance, float recoil)
+    {
+        speed = 0;
+        enemyCollider.enabled = false;
+        enemyRb.velocity = -distance * recoil;
         StartCoroutine(Recover());
     }
 
     private IEnumerator SpawnLoot(string loot)
     {
+        Vector3 droppingSite = transform.position;
         yield return new WaitForEndOfFrame();
         for (int i = 0; i < lootQuantity; i++)
         {
-            objectPooler.SpawnFromPool(loot, transform.position, transform.rotation);
+            objectPooler.SpawnFromPool(loot, droppingSite, transform.rotation);
+            droppingSite += new Vector3(0.2f,0,0); 
+            
         }
         gameObject.SetActive(false);
     }
