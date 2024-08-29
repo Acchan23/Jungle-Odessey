@@ -234,88 +234,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 80255234}
     m_Modifications:
     - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 100277084}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1319748345}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175022, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175024, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_Name
-      value: ReturnButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029873975175025, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -468
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029874140841598, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: sfxSlider
-      value: 
-      objectReference: {fileID: 100277085}
     - target: {fileID: 6467029874461133047, guid: 157d349b39010124585630efb39e1679, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029874773078120, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_text
-      value: RETURN
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029874773078120, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_fontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467029875167845615, guid: 157d349b39010124585630efb39e1679, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 475
       objectReference: {fileID: 0}
     - target: {fileID: 6467029875277106698, guid: 157d349b39010124585630efb39e1679, type: 3}
       propertyPath: m_Pivot.x
@@ -425,17 +349,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6467029875277106701, guid: 157d349b39010124585630efb39e1679, type: 3}
   m_PrefabInstance: {fileID: 100277082}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &100277085 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3012112768456078376, guid: 157d349b39010124585630efb39e1679, type: 3}
-  m_PrefabInstance: {fileID: 100277082}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &124036287
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +864,10 @@ PrefabInstance:
     - target: {fileID: 9048731372348520004, guid: 59934e5775e51d14ebdba778e4f8f872, type: 3}
       propertyPath: m_Name
       value: PanelCredits
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048731372348520004, guid: 59934e5775e51d14ebdba778e4f8f872, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9048731372348520027, guid: 59934e5775e51d14ebdba778e4f8f872, type: 3}
       propertyPath: m_Pivot.x
