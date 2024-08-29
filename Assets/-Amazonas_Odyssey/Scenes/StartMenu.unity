@@ -239,7 +239,7 @@ PrefabInstance:
       objectReference: {fileID: 1319748345}
     - target: {fileID: 6467029874461133047, guid: 157d349b39010124585630efb39e1679, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6467029875277106698, guid: 157d349b39010124585630efb39e1679, type: 3}
       propertyPath: m_Pivot.x
@@ -329,9 +329,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: VolumePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 6467029875277106701, guid: 157d349b39010124585630efb39e1679, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6633770786503398794, guid: 157d349b39010124585630efb39e1679, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 157d349b39010124585630efb39e1679, type: 3}
