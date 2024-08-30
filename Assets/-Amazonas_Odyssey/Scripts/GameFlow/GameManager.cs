@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+
         if (Instance != null)
         {
             Destroy(this.gameObject);
@@ -60,6 +61,8 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(4f);
         Time.timeScale = 0;
-        victoryPanel.SetActive(true);
+        SceneManager.LoadScene("VictoryScene"); 
     }
+
+
 }

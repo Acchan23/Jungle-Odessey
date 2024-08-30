@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/-Amazonas_Odyssey/Scenes/Main.unity
     guid: 659d70bf655a5744389bef974c1f0f9d
+  - enabled: 1
+    path: Assets/-Amazonas_Odyssey/Scenes/VictoryScene.unity
+    guid: 5991558e9b771504ab5b633f95a7ae1e
   m_configObjects: {}

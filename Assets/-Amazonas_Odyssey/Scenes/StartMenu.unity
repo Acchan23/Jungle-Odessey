@@ -903,22 +903,29 @@ PrefabInstance:
         from Pixabay.\r\nMagical ritual shaman amazonian indians. Music by Denis
         Pavlov from Pixabay.\r\nLoneliness of the Winner. Music by Leonid Timachev
         from Pixabay.\r\nJungle Music. Music by Kamalesh Siddu from Pixabay\r\nHeavy
-        Press. Music from Pixabay.\r\n\r\n\r\nZapsplat Animals Lizard Tongue Eat
-        Insect. Sound from Zapsplat.com\r\nCartoon punch 1. Sound from Zapsplat.com\r\nImpacts
+        Press. Music from Pixabay.\r\r\nZapsplat Animals Lizard Tongue Eat Insect.
+        Sound from Zapsplat.com\r\nCartoon punch 1. Sound from Zapsplat.com\r\nImpacts
         Body Hit Punch or Kick. Sound from Zapsplat.com\r\nBadminton racket fast
         movement, swoosh through air 4. Sound from Zapsplat.com\r\nMultimedia button
         click bright. Sound from Zapsplat.com\r\nWarfare Knife Sharp Metal Stab Dig
-        Into Dirt. Sound from Zapsplat.com\r\n\r\n\r\nDog barking. Sound Effect from
-        Pixabay\r\nCartoon Frog Eat Fly from Sound from Zapsplat.com\r\nZapsplat
-        Cartoon Frog Jump from Zapsplat.com\r\nZapsplat Cartoon Frog Croak from Zapsplat.com\r\nRetro
-        Falling Down SFX Sound Effect from Pixabay\r\nBuaya Sound Effect by Sondang
-        Sirait from Pixabay\r\nEating Sound Effect. Sound Effect from Pixabay\r\nAlligator
-        hiss, angry 2 from Zapsplat.com\r\nSnake hiss, short from Zapsplat.com\r\n\r\n\r\nPatr\xF3n
-        de teja de techo de dise\xF1o plano design by Freepik"
+        Into Dirt. Sound from Zapsplat.com\r\nDog barking. Sound Effect from Pixabay\r\nCartoon
+        Frog Eat Fly from Sound from Zapsplat.com\r\nZapsplat Cartoon Frog Jump from
+        Zapsplat.com\r\nZapsplat Cartoon Frog Croak from Zapsplat.com\r\nRetro Falling
+        Down SFX Sound Effect from Pixabay\r\nBuaya Sound Effect by Sondang Sirait
+        from Pixabay\r\nEating Sound Effect. Sound Effect from Pixabay\r\nAlligator
+        hiss, angry 2 from Zapsplat.com\r\nSnake hiss, short from Zapsplat.com\r\nPatr\xF3n
+        de teja de techo de dise\xF1o plano design by Freepik\nPiiiXL ==> Food and
+        little bit of kitchenware\nElska ==> 16x16 Dog\nbrullov ==> Fire Animation
+        - Pixel Art FX Sprites\nRainloaf ==> Capybara sprite sheet\nElthen's Pixel
+        Art Shop  ==> 2D Pixel Art Snake Sprites\nGrafxKid\u2019s publicly released
+        pixel art assets\nDuckhive ==> Froggo!\nCraftpix ==> Free base 4 - Direction
+        male character pixel art\nFree Topdown Fantasy - Forest - Pixelart Tileset
+        by aamatniekss in Ich.io\nForest Ruins Top Down Tileset by PixiVan in Itchi.io\nMINIFANTASY
+        - Forgotten Plains by Krishna Palacio in Unity Asset Store"
       objectReference: {fileID: 0}
     - target: {fileID: 6732572883654690735, guid: 59934e5775e51d14ebdba778e4f8f872, type: 3}
       propertyPath: m_fontSize
-      value: 1.57
+      value: 1.42
       objectReference: {fileID: 0}
     - target: {fileID: 6732572883654690735, guid: 59934e5775e51d14ebdba778e4f8f872, type: 3}
       propertyPath: m_margin.y
@@ -926,7 +933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6732572883654690735, guid: 59934e5775e51d14ebdba778e4f8f872, type: 3}
       propertyPath: m_fontSizeBase
-      value: 1.57
+      value: 1.42
       objectReference: {fileID: 0}
     - target: {fileID: 8920330710936233479, guid: 59934e5775e51d14ebdba778e4f8f872, type: 3}
       propertyPath: m_IsActive

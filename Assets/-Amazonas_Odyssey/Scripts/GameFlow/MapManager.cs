@@ -63,13 +63,12 @@ public class MapManager : MonoBehaviour
             for (int j = 0; j < piecesOfMap.GetLength(1); j++)
             {
                 piecesOfMap[i, j] = maps[i * dimensionArray + j];
-                //Debug.Log("Se ha agregado " + maps[i * dimensionArray + j].name + " en la posición [" + i + "][" + j + "]");
                 //Inicializa las variables en la posición del primer mapa activado
                 if (maps[i * dimensionArray + j].activeSelf)
                 {
                     posI = i;
                     posJ = j;
-                    //Debug.Log("Nos encontramos en " + posI + "," + posJ);
+  
                 }
             }
         }
@@ -87,7 +86,7 @@ public class MapManager : MonoBehaviour
         {
             piecesOfMap[posI, posJ].SetActive(false); //Desactiva el mapa
             posJ++; //Mueve el apuntador para el arreglo bidimensional
-            //Debug.Log("las posición en J es " + posJ);
+            
             transform.position = new Vector2(transform.position.x + correction, transform.position.y); //Reubica al personaje en la siguiente sala
             edge.transform.position = new Vector2(edge.transform.position.x + 30, edge.transform.position.y); //Reubica el borde máximo al que se puede mover la cámara del Cinemachine
             piecesOfMap[posI, posJ].SetActive(true); //Activa la nueva porción del mapa
@@ -98,14 +97,14 @@ public class MapManager : MonoBehaviour
             posJ--;//Mueve el apuntador para el arreglo bidimensional
             transform.position = new Vector2(transform.position.x - correction, transform.position.y); //Reubica al personaje en la siguiente sala
             edge.transform.position = new Vector2(edge.transform.position.x - 30, edge.transform.position.y); //Reubica el borde máximo al que se puede mover la cámara del Cinemachine
-            //Debug.Log("las posición en J es " + posJ);
+            
             piecesOfMap[posI, posJ].SetActive(true); //Activa la nueva porción del mapa
         }
         else if (other.gameObject.CompareTag("Down")) // Sale por una puerta marcada cómo "Down"
         {
             piecesOfMap[posI, posJ].SetActive(false);//Desactiva el mapa
             posI++;//Mueve el apuntador para el arreglo bidimensional
-            Debug.Log("las posición en I es " + posI);
+            
             transform.position = new Vector2(transform.position.x, transform.position.y - correction);//Reubica al personaje en la siguiente sala
             edge.transform.position = new Vector2(edge.transform.position.x, edge.transform.position.y - 23); //Reubica el borde máximo al que se puede mover la cámara del Cinemachine
             piecesOfMap[posI, posJ].SetActive(true); //Activa la nueva porción del mapa
@@ -114,7 +113,7 @@ public class MapManager : MonoBehaviour
         {
             piecesOfMap[posI, posJ].SetActive(false);//Desactiva el mapa
             posI--;//Mueve el apuntador para el arreglo bidimensional
-            //Debug.Log("las posición en J es " + posJ);
+            
             transform.position = new Vector2(transform.position.x, transform.position.y + correction); //Reubica al personaje en la siguiente sala
             edge.transform.position = new Vector2(edge.transform.position.x, edge.transform.position.y + 23); //Reubica el borde máximo al que se puede mover la cámara del Cinemachine
             piecesOfMap[posI, posJ].SetActive(true); //Activa la nueva porción del mapa

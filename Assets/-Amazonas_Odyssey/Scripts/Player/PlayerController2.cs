@@ -57,21 +57,6 @@ public class PlayerController2 : MonoBehaviour
         Time.timeScale = isInventoryOpen ? 0f : 1f;
     }
 
-    //private void AdjustSpeedToHealth()
-    //{
-    //    if (stats.lifeCur >= 7)
-    //    {
-    //        speed = 5f;
-    //    }
-    //    else if (stats.lifeCur <= 3)
-    //    {
-    //        speed = 3.5f;
-    //    }
-    //    else
-    //    {
-    //        speed = 4f;
-    //    }
-    //}
     private void Attack()
     {
         AudioManager2.Instance.PlaySFX(attackSound);
@@ -89,10 +74,6 @@ public class PlayerController2 : MonoBehaviour
         {
             attackCollider.offset = new Vector2(0, lastMovementDirection.y > 0 ? attackOffset : -attackOffset);
         }
-        //animator.SetTrigger("attack");
-        //animator.SetFloat("AttackX", mouseDirection.x);
-        //animator.SetFloat("AttackY", mouseDirection.y);
-        //playerState = PlayerStates.MOVING;
         StartCoroutine(EndAttack());
     }
 
@@ -131,19 +112,6 @@ public class PlayerController2 : MonoBehaviour
             playerState = PlayerStates.MOVING;
             animator.SetBool("isMoving", true);
         }
-        //if (speedX < 0)
-        // {
-        //playerSprite.flipX = true;
-        //   transform.localScale = new Vector3(-1, 1, 1);
-        //}
-
-        //if (speedX > 0)
-        //{
-        //playerSprite.flipX = false;
-        //   transform.localScale = new Vector3(1, 1, 1);
-        //}
-
-
         Vector3 position = transform.position;
         transform.position = new Vector3(speedX + position.x, speedY + position.y, position.z);
     }

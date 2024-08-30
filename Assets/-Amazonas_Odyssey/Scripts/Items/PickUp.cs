@@ -16,6 +16,8 @@ public class PickUp : MonoBehaviour
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject description;
 
+    [SerializeField] private AudioClip eatSound, pickUpSound; 
+
 
     // Referencia estática a la instancia actual
     public static PickUp currentPickUp;
@@ -94,7 +96,7 @@ public class PickUp : MonoBehaviour
 
     public void TakeItem()
     {
-        Debug.Log("TakeItem called");
+        AudioManager2.Instance.PlaySFX(pickUpSound);
         for (int i = 0; i < inventory.items.Length; i++)
         {
             if (inventory.items[i].type == type && inventory.items[i].amount < maxItems)
@@ -128,7 +130,7 @@ public class PickUp : MonoBehaviour
 
     public void EatItem()
     {
-        Debug.Log("Eat called");
+        AudioManager2.Instance.PlaySFX(eatSound);
         PlayerStats stats = PlayerStats.instance;
         switch (type)
         {
@@ -144,7 +146,6 @@ public class PickUp : MonoBehaviour
                 stats.AddLife(1);
                 break;
             default:
-                Debug.Log("Unrecognized item");
                 return;
         }
         gameObject.SetActive(false);
@@ -153,7 +154,6 @@ public class PickUp : MonoBehaviour
 
     public void LeaveItem()
     {
-        Debug.Log("leave called");
         CloseOptionsMenu();
     }
 }

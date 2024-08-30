@@ -103,6 +103,8 @@ MonoBehaviour:
   interactionPrompt: {fileID: 0}
   optionsMenu: {fileID: 0}
   description: {fileID: 0}
+  eatSound: {fileID: 8300000, guid: df0c58cd1e06a1d428dc5f3b13a17399, type: 3}
+  pickUpSound: {fileID: 8300000, guid: d4d58bf030a913b4083813996bf5da25, type: 3}
 --- !u!61 &8501728378699417230
 BoxCollider2D:
   m_ObjectHideFlags: 0
